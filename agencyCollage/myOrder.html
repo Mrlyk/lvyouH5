@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>汇聚同行</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/myOrder.css">
+</head>
+<body>
+<div id="container">
+    <div class="container-fluid">
+        <div class="row header">
+            <a href="#"> < </a>
+            <span>我的订单</span>
+        </div>
+
+        <div class="row headerRow">
+            <a href="#" class="headerTitle" style="color: red">拼单订单</a>
+            <a href="#" class="headerTitle">创建订单</a>
+        </div>
+
+        <!--订单列表-->
+        <div v-for="item in myOrder">
+            <div class="row orderId">
+                <span>订单编号：{{item.orderId}}</span>
+                <span class="" v-if="item.orderStatus=='待支付'" style="color:red;">{{item.orderStatus}}</span>
+                <span v-else>{{item.orderStatus}}</span>
+            </div>
+            <div class="row orderMsg">
+                <p v-if="item.collage" style="font-size: 1.2rem;color: black">[拼单] {{item.orderName}}</p>
+                <p v-else style="font-size: 1.2rem;color: black">{{item.orderName}}</p>
+                <p>{{item.orderName}}</p>
+                <p>目的地：{{item.destination}}</p>
+                <p>购买日期：{{item.orderDate}}</p>
+                <p>购买人数：{{item.orderNum}}</p>
+                <p>地接价格：<span style="color: red">¥ {{item.orderPrice}}</span></p>
+                <p v-if="item.collage">是否拼单：是</p>
+                <p v-else="item.collage">是否拼单：否</p>
+            </div>
+
+            <div class="orderTime">
+                <span style="color: rgb(161,161,161)">订单时间：{{item.orderTime}}</span>
+                <span style="color: red">总价：¥ {{item.totalPrice}}</span>
+            </div>
+
+            <div class="row pay">
+                <button v-if="item.orderStatus=='待支付'" class="payBtn" @click="pay">支付</button>
+                <button @click="toDetail" class="toDetail">查看详情</button>
+            </div>
+
+            <!--分割块-->
+            <div class="row"
+                 style="height: 1rem;background-color: rgb(244,244,244);border-bottom: 1px solid rgb(121, 121, 121);">
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+</div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript">
+    let vm = new Vue({
+        el: '#container',
+        data() {
+
+            return {
+                myOrder: [
+                    {
+                        collage:true,
+                        orderId: '265659554',
+                        orderStatus: '待支付',
+                        orderName:'宁波直飞北京纯玩五日游',
+                        destination:'北京',
+                        orderDate:'2018-10-01',
+                        orderNum:'3',
+                        orderPrice:'3000.00',
+                        orderTime:'2018-04-23 15:15',
+                        totalPrice:'9000.00'
+                    },{
+                        collage:true,
+                        orderId: '265659554',
+                        orderStatus: '已完成',
+                        orderName:'宁波直飞北京纯玩五日游',
+                        destination:'北京',
+                        orderDate:'2018-10-01',
+                        orderNum:'3',
+                        orderPrice:'3000.00',
+                        orderTime:'2018-04-23 15:15',
+                        totalPrice:'9000.00'
+                    },{
+                        collage:false,
+                        orderId: '265659554',
+                        orderStatus: '待支付',
+                        orderName:'宁波直飞北京纯玩五日游',
+                        destination:'北京',
+                        orderDate:'2018-10-01',
+                        orderNum:'3',
+                        orderPrice:'3000.00',
+                        orderTime:'2018-04-23 15:15',
+                        totalPrice:'9000.00'
+                    },
+                ]
+            }
+        },
+        methods:{
+            pay(){
+
+            },
+
+            toDetail(){
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

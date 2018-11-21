@@ -1,0 +1,60 @@
+/*详情*/
+.detail{
+    padding: 1rem 0 0.5rem 1.2rem;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(99, 99, 99);
+}
+
+.detail>p{
+    color: rgb(96, 96, 96);
+}
+
+/*选择日期*/
+.selectData{
+    font-size: 1.2rem;
+    height: 3.5rem;
+    align-items: center;
+    padding-left: 1rem;
+
+}
+
+/*拼单信息*/
+.collageInfoTitle{
+    padding-left: 1.3rem;
+    align-items: center;
+    height: 3.5rem;
+    background-color: rgb(244,244,244);
+}
+.collageInfo{
+    align-items: center;
+    padding: 1rem 0;
+    border-top: 1px solid rgb(121,121,121);
+    border-bottom: 1px solid rgb(121,121,121);
+}
+.collageInfo>.col-4{
+    text-align: center;
+}
+.collageInfo>.col-4>img{
+    width: 70%;
+}
+
+.collageInfo>.col-8>p{
+    margin-bottom: 0.4rem;
+}
+
+
+/*底部行程介绍图片*/
+.detailImg>img{
+    width: 100%;
+}
+
+/*立即拼单按钮*/
+.collageBtn>button{
+    position: fixed;
+    bottom: 0;
+    font-size: 1.3rem;
+    height: 3.5rem;
+    width: 100%;
+    background-color: red;
+    color: white;
+}

@@ -1,0 +1,31 @@
+/*路线信息*/
+.routerTitle{
+    align-items: center;
+    height: 3.2rem;
+    font-size: 1.2rem;
+    color: rgb(101,101,101);
+    padding-left: 1rem;
+    border-bottom: 1px solid rgb(121,121,121);
+    background-color: rgb(244,244,244);
+}
+
+.router{
+    flex-direction: column;
+    padding: 1rem 0 1rem 1rem;
+    border-bottom: 1px solid rgb(121,121,121);
+}
+
+.router>p{
+    margin-bottom: 0.3rem;
+}
+
+/*拼单信息*/
+.collageInfo{
+    padding: 1rem;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(121,121,121);
+}
+
+.collageInfo>p{
+    margin-bottom: 0.3rem;
+}

@@ -1,0 +1,70 @@
+.createCollage{
+    padding: 1rem 0.8rem;
+    align-items: center;
+    border-bottom: 1px solid rgb(101, 101, 101);
+}
+
+.createCollage>.col-3{
+    padding: 0;
+}
+
+.createCollage>.col-9>input{
+    width: 100%;
+    outline: none;
+}
+
+/*行程介绍*/
+.tradeIntroduce{
+    padding: 1rem 0.8rem;
+    border-bottom: 1px solid rgb(191, 191, 191);
+}
+
+.tradeIntroduce>.col-3{
+    padding: 0;
+}
+
+.tradeIntroduce>.col-9>label{
+    width: 6rem;
+    height: 6rem;
+    line-height: 6rem;
+    font-size: 2rem;
+    text-align: center;
+    display: block;
+    border: 1px solid rgb(161,161,161);
+}
+
+/*发布按钮*/
+.subBtn{
+    height: 6rem;
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(244,244,244);
+}
+.subBtn>button{
+    width: 36%;
+    height: 3rem;
+    background-color: red;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 4px;
+
+}
+
+/*日期选择框样式*/
+.el-input__inner{
+    border: none;
+}
+
+/*发布成功模态框*/
+.modal-dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 3;
+    margin: auto;
+    -webkit-transform: translate(-50%, -50%) !important;
+    -moz-transform: translate(-50%, -50%) !important;
+    -ms-transform: translate(-50%, -50%) !important;
+    -o-transform: translate(-50%, -50%) !important;
+    transform: translate(-50%, -50%) !important;
+}

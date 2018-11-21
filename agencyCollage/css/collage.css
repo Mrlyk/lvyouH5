@@ -1,0 +1,48 @@
+.rowPadding {
+    padding: 0.6rem 1rem;
+}
+
+/*头部搜索框*/
+.myBorder {
+    align-items: center;
+    padding: 0.8rem 0rem;
+    border-bottom: 1px dashed rgb(121, 121, 121);
+}
+
+/*搜索按钮*/
+.btnRow {
+    padding-bottom: 1rem;
+    justify-content: center;
+    border-bottom: 1px solid rgb(121, 121, 121);
+}
+
+.searchBtn {
+    width: 28%;
+    font-size: 1.2rem;
+    height: 2.6rem;
+    background-color: white;
+    border-radius: 5px;
+    border: 1px solid rgb(181, 181, 181);
+}
+
+/*拼单列表*/
+.collage {
+    flex-wrap: nowrap;
+    border-bottom: 1px solid rgb(121, 121, 121);
+}
+
+.collage > .col-4 {
+    padding: 1rem 0.8rem 1rem 0.6rem;
+}
+
+.collage > .col-8 {
+    padding: 0.5rem 0;
+
+}
+
+.collage > .col-8 > p {
+    margin-bottom: 0.2rem;
+    color: rgb(96, 96, 96);
+}
+
+

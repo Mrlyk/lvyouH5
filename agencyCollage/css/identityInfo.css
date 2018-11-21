@@ -1,0 +1,59 @@
+html,body{
+    height: 100%;
+    background-color: rgb(244,244,244);
+}
+
+.container-fluid{
+    background-color: white;
+}
+
+/*选择人数*/
+.dNum{
+    padding: 1rem 0.2rem;
+    align-items: center;
+
+}
+
+.dNum>.col-9>input{
+    width: 100%;
+    outline: none;
+}
+
+/*信息*/
+.identityInfo{
+    align-items: center;
+    padding: 1rem 1.2rem;
+    border-top: 1px dashed rgb(201,201,201);
+}
+
+.identityInfo>.col-3{
+    padding: 0;
+}
+
+.identityInfo>.col-9>input{
+    width: 100%;
+    outline: none;
+}
+
+/*底部支付*/
+.payFooter{
+    width: 100%;
+    height: 3.5rem;
+    background-color: white;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    border-top: 1px solid rgb(121,121,121);
+}
+
+.payFooter>.col-4{
+    padding: 0;
+}
+
+.payFooter>.col-4>button{
+    height: 3.6rem;
+    width: 100%;
+    background: red;
+    color: white;
+    font-size: 1.2rem;
+}

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>汇聚同行</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/identityInfo.css">
+</head>
+<body>
+<div id="container">
+    <div class="container-fluid">
+        <div class="row header">
+            <a href="#"> < </a>
+            <span>立即拼单</span>
+        </div>
+
+        <!--人数-->
+        <div class="row dNum">
+            <div class="col-3">
+                <span>人数：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="dNum" placeholder="请输入人数">
+            </div>
+        </div>
+
+        <!--信息-->
+        <div class="row identityInfo" v-for="item in newdNum">
+            <div class="col-3">
+                <span>姓名：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="name[item]">
+            </div>
+            <div class="col-3">
+                <span>身份证号：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="idCard[item]">
+            </div>
+        </div>
+        <!--分割线-->
+        <div class="row" style="height: 1px;border-bottom: 1px solid rgb(121,121,121);margin-bottom: 4rem;">
+        </div>
+
+        <!--底部支付-->
+        <div class="row payFooter">
+            <div class="col-8">
+                <span>总价：<span style="color:red;">¥ {{newPrice}}</span> </span>
+            </div>
+            <div class="col-4">
+                <button @click="pay">去支付</button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript">
+    let vm = new Vue({
+        el: '#container',
+        data() {
+            return {
+                dNum: '',
+                name:[],
+                idCard:[],
+            }
+        },
+        computed: {
+            newPrice() {
+                return (this.dNum * 3000).toFixed(2);
+            },
+            newdNum(){
+                if(this.dNum==''){
+                    return 3;
+                }else{
+                    return Number(this.dNum);
+                }
+            }
+        },
+        methods: {
+            pay() {
+                console.log(this.name);
+            }
+        }
+
+    })
+</script>
+
+</body>
+</html>

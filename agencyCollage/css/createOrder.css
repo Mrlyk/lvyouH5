@@ -1,0 +1,71 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(244,244,244);
+}
+
+.container-fluid{
+    background-color: white;
+}
+
+/*顶部菜单*/
+.headerRow{
+    height: 3rem;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.headerTitle{
+    font-size: 1.2rem;
+    text-decoration: none !important;
+    color: black;
+}
+
+/*我创建的拼单*/
+.createOrderTitle{
+    padding: 1rem;
+    padding-bottom: 0.5rem;
+    font-size: 1.2rem;
+    align-items: center;
+    flex-wrap: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    background-color: rgb(244,244,244);
+    justify-content: space-between;
+    border-top: 1px solid rgb(121,121,121);
+}
+
+.createOrder{
+    padding-left: 1rem;
+    flex-direction: column;
+    background-color: rgb(244,244,244);
+    padding-bottom: 0.2rem;
+    border-bottom: 1px solid rgb(121,121,121);
+}
+
+.createOrder>p{
+    color: rgb(101,101,101);
+    margin-bottom: 0.3rem;
+}
+
+/*订单底部*/
+.orderFooter{
+    padding-left: 0.8rem;
+    padding-right: 0.2rem;
+    align-items: center;
+    height: 4rem;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(121,121,121);
+}
+
+.orderFooter>span{
+    font-size: 1rem;
+    color:rgb(181,181,181);
+}
+
+.orderBtn>button{
+    height: 2.4rem;
+    background-color: white;
+    border: 1px solid rgb(66,66,66);
+    border-radius: 6px;
+}

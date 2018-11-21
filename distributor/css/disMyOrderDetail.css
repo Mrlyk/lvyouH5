@@ -1,0 +1,52 @@
+/*路线信息*/
+.routerTitle {
+    align-items: center;
+    height: 3.2rem;
+    font-size: 1.2rem;
+    color: rgb(101, 101, 101);
+    padding-left: 1rem;
+    background-color: rgb(244, 244, 244);
+    border-bottom: 1px solid rgb(121,121,121);
+}
+
+.router {
+    flex-direction: column;
+    padding: 1rem 0 0 1rem;
+}
+
+.router > p {
+    color: rgb(101,101,101);
+}
+
+.rowImg {
+    padding-left: 1rem;
+    padding-bottom: 1rem;
+}
+.rowDown{
+    padding-left: 1rem;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(121, 121, 121);
+}
+.rowDown >p{
+
+    color: rgb(101,101,101);
+}
+
+/*拼单信息*/
+.collageInfo {
+    padding: 1rem;
+    padding-bottom: 0;
+    flex-direction: column;
+}
+
+.collageInfo > div > p {
+    color: rgb(101, 101, 101);
+    margin-bottom: 0.3rem;
+}
+
+/*分割块*/
+.rowSplit {
+    border-top: 1px solid rgb(121,121,121);
+    height: 1rem;
+    background-color: rgb(244, 244, 244);
+}

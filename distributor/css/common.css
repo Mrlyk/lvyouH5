@@ -1,0 +1,58 @@
+@media screen and (min-width: 320px) {
+    html {font-size: 12px;}
+}
+
+@media screen and (min-width: 370px) {
+    html {font-size: 14px;}
+}
+
+@media screen and (min-width: 400px) {
+    html {font-size: 14.625px;}
+}
+
+@media screen and (min-width: 440px) {
+    html {font-size: 16px;}
+}
+
+@media screen and (min-width: 480px) {
+    html {font-size: 18px;}
+}
+
+@media screen and (min-width: 640px) {
+    html {font-size: 20px;}
+}
+
+/*消除边框*/
+*{
+    outline: none;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid {
+    font-size: 1.1rem;
+
+}
+
+.header {
+    border-bottom: 1px solid rgb(121, 121, 121);
+    padding: 0.8rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.header > a {
+    color: black;
+    width: 10%;
+    font-size: 1.6rem;
+    position: absolute;
+    left: 1rem;
+    text-decoration: none;
+}
+
+.header > span {
+    font-size: 1.4rem;
+}

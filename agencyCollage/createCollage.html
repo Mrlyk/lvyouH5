@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>汇聚同行</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui@2.3.9/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/createCollage.css">
+</head>
+<body>
+<div id="container">
+    <div class="container-fluid">
+        <div class="row header">
+            <a href="#"> < </a>
+            <span>创建拼单</span>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>线路标题：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="title" placeholder="请输入线路标题">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>发班日期：</span>
+            </div>
+            <div class="col-9">
+                <!--日期选择器-->
+                <el-date-picker
+                        type="dates"
+                        v-model="timeValue"
+                        placeholder="请选择日期"
+                >
+                </el-date-picker>
+
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>门市价：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="mPrice" placeholder="请输入门市价">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>结算价：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="jPrice" placeholder="请输入结算价">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>递减人数：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="dNum" placeholder="请输入递减人数">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>递减价格：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="dPrice" placeholder="请输入递减价格">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>封顶人数：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="fNum" placeholder="请输入封顶人数">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>佣金：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="charges" placeholder="请输入佣金">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>出发地：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="sPlace" placeholder="请输入出发地">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>目的地：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="ePlace" placeholder="请输入目的地">
+            </div>
+        </div>
+        <div class="row createCollage">
+            <div class="col-3">
+                <span>大交通：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="transition" placeholder="请输入大交通">
+            </div>
+        </div>
+        <div class="row tradeIntroduce">
+            <div class="col-3">
+                <span>行程介绍：</span>
+            </div>
+            <div class="col-9">
+                <label for="upload"><i class="el-icon-plus"></i> </label>
+                <input id="upload" type="file" style="display: none">
+            </div>
+        </div>
+
+        <div class="row subBtn">
+            <button @click="sub">立即发布</button>
+        </div>
+
+        <!--发布成功模态框-->
+        <div class="modal fade" id="subSuccess">
+            <div class="modal-dialog" style="width: 40%;">
+                <div class="modal-content">
+
+                    <div class="modal-body" style="text-align: center">
+                        <img src="./img/createCollage.png" style="width: 30%;margin-bottom: 1rem">
+                        <p style="font-size: 1rem;color: #1c7430">发布成功!</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script src="https://unpkg.com/element-ui@2.3.9/lib/index.js"></script>
+<script type="text/javascript">
+    let vm = new Vue({
+        el: '#container',
+        data() {
+            return {
+                title: '',
+                timeValue: [],
+                mPrice: '',
+                jPrice: '',
+                dNum: '',
+                dPrice: '',
+                fNum: '',
+                charges: '',
+                sPlace: '',
+                ePlace: '',
+                transition: '',
+            }
+        },
+        methods: {
+            sub() {
+                $('#subSuccess').modal('toggle');
+            }
+        }
+    })
+</script>
+</body>
+</html>

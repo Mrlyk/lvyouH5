@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+      <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+      <script type="text/javascript" src="http://v1.vuejs.org/js/vue.min.js"></script>
+      <script type="text/javascript" src="http://unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../common.css">
+    <title>车队服务</title>
+    <style>
+        body,html{
+            background: #f2f2f2;
+            height: 100%;
+        }
+        #app{
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        header{
+            background: #fff;
+            border-bottom: 1px solid #e4e4e4;
+            padding:.5rem 0;
+            font-size: 1rem;
+            text-align: center;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        header .ivu-icon{
+            position: absolute;
+            left: 0;
+            font-size: 1.4rem;
+        }
+        .container{
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .container .list{
+            background: #f9f9f9;
+            margin-bottom: 2px;
+            display: flex;
+            display: -webkit-flex;
+            height: 4rem;
+            align-items: center;
+        }
+        .container .left{
+            flex: 1;
+            line-height: 1.5rem;
+            padding-left:.5rem
+        }
+        .container .state{
+            width: 4rem;
+            text-align: center;
+            height: 4rem;
+            line-height: 4rem;
+        }
+        .container .state{
+            border-radius: 5px;
+            background: #b60807;
+            color: #fff;
+            text-align: center;
+            line-height: 1.5rem;
+            height: 1.5rem;
+            width: 3rem;
+            display: block;
+            margin-right: 1rem;
+        }
+        .tip{
+            text-align: center;
+            line-height: 3rem;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+		<header>
+            <Icon type="ios-arrow-back" @click="back()"></Icon>
+            车队服务
+		</header>
+        <div class="container">
+            <div class="list" v-for="item in list" @click="toDetail()">
+                <div class="left">
+                    <p>日期：{{item.date}}</p>
+                    <p><span>出发地：{{item.from}}</span> 目的地：{{item.to}}</p>
+                </div>
+                <div class="state">
+                        抢单
+                </div>
+            </div>
+            <p class="tip">已全部加载完</p>
+        </div>
+	</div>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return{
+                    list:[{
+                        date:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        date:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        date:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    }]
+                }
+
+            },
+            methods: {
+                toDetail(id){
+                    window.location.href='detail.html?id='+id
+                },
+                back(){
+                    window.history.go(-1)
+                }
+            }
+        })
+    </script>
+  </body>
+</html>

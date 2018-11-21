@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+      <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+      <script type="text/javascript" src="http://v1.vuejs.org/js/vue.min.js"></script>
+      <script type="text/javascript" src="http://unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../common.css">
+    <title>拼单旅游</title>
+    <style>
+        body,html{
+            background: #f2f2f2;
+            height: 100%;
+        }
+        #app{
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        header{
+            background: #fff;
+            border-bottom: 1px solid #e4e4e4;
+            padding:.5rem 0;
+            font-size: 1rem;
+            text-align: center;
+            position: relative;
+           
+        }
+        header .ivu-icon{
+            position: absolute;
+            left: 0;
+            font-size: 1.4rem;
+        }
+        .container{
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+        }
+        /*搜索*/
+        .choose{
+            padding: 0 1rem;
+            background: #ffffff;
+            border-bottom: 1px solid #d2d2d2;
+            margin-bottom: .5rem;
+            overflow: hidden;
+        }
+        .choose > div{
+            border-bottom: 1px dashed #d2d2d2;
+            display: flex;
+            display: -webkit-flex;
+            height: 3rem;
+            line-height: 3rem;
+            align-items: center;
+        }
+        .choose select,.choose input{
+            flex: 1;
+            border: 0;
+        }
+        .choose button{
+            margin:  1rem auto;
+            padding: 0.3rem 1rem;
+            border-radius: 3px;
+            background: #239823;
+            border: 0;
+            color: #ffffff;
+            display: block;
+        }
+        /*列表*/
+        .container{
+            border-top: 1px solid #d2d2d2;
+        }
+        .container > p{
+            text-align: center;
+            line-height: 3rem;
+        }
+        .ivu-card-bordered{
+            margin: 0!important;
+            background: #ffffff;
+        }
+        .list{
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .list .img{
+            float: left;
+            width: 30%;
+            margin:0 1%;
+            text-align: center;
+        }
+        .list .img img{
+            width: auto;
+            height: auto;
+            max-width: 100%;
+        }
+        .list p{
+            float: left;
+            width: 67%;
+            color: #999999;
+            line-height: 1.5rem;
+            font-size: .8rem;
+        }
+        .list p b{
+            font-weight: normal;
+            font-size: .9rem;
+            color: #333333;
+        }
+        .list p span{
+            color: #ff0000;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+		<header>
+            <Icon type="ios-arrow-back" @click="back()"></Icon>
+            拼单旅游
+		</header>
+        <div class="choose">
+            <div class="city">
+                目的地：
+                <Select v-model="city">
+                    <Option v-for="item in cityList" :value="item.value" :key="item.value">{{ item.label }}</Option>
+                </Select>
+            </div>
+            <div class="line">
+                线路名称：
+                <input placeholder="请输入线路名称" v-model="line"/>
+            </div>
+            <button>搜索</button>
+        </div>
+        <div class="container">
+            <Scroll :on-reach-bottom="handleReachBottom">
+                <Card dis-hover v-for="item in list"  @click="toDetail(item.id)" >
+                    <div class="list">
+                        <div class="img">
+                            <img :src="item.imgUrl"/>
+                        </div>
+
+                        <p>
+                            <b>[拼单]{{item.nm}}</b><br/>
+                            目的地：{{item.destination}}<br/>
+                            发班日期：{{item.departureDate}}<br/>
+                            地接价格：<span>{{item.price}}</span><br/>
+                            递减人数：{{item.delNum}}<br/>
+                            递减价格：{{item.delPrice}}<br/>
+                            封顶人数：{{item.maxNum}}
+                        </p>
+                    </div>
+                </Card>
+            </Scroll>
+            <p>已加载完</p>
+        </div>
+	</div>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return{
+                    city:'',
+                    line:'',
+                    list:[{
+                        imgUrl:'',
+                        nm:'宁波直飞北京纯玩五日游',
+                        destination:'北京',
+                        price:'￥5000',
+                        delNum:'20',
+                        delPrice:'￥200',
+                        maxNum:'20'
+                    },{
+                        imgUrl:'',
+                        nm:'宁波直飞北京纯玩五日游',
+                        destination:'北京',
+                        price:'￥5000',
+                        delNum:'20',
+                        delPrice:'￥200',
+                        maxNum:'20'
+                    },{
+                        imgUrl:'',
+                        nm:'宁波直飞北京纯玩五日游',
+                        destination:'北京',
+                        price:'￥5000',
+                        delNum:'20',
+                        delPrice:'￥200',
+                        maxNum:'20'
+                    },{
+                        imgUrl:'',
+                        nm:'宁波直飞北京纯玩五日游',
+                        destination:'北京',
+                        price:'￥5000',
+                        delNum:'20',
+                        delPrice:'￥200',
+                        maxNum:'20'
+                    },{
+                        imgUrl:'',
+                        nm:'宁波直飞北京纯玩五日游',
+                        destination:'北京',
+                        price:'￥5000',
+                        delNum:'20',
+                        delPrice:'￥200',
+                        maxNum:'20'
+                    },],
+                    cityList:[{
+                        value:'北京',
+                        label:'北京',
+                    },{
+                        value:'西安',
+                        label:'西安',
+                    },{
+                        value:'南京',
+                        label:'南京',
+                    },{
+                        value:'长沙',
+                        label:'长沙',
+                    },{
+                        value:'苏州',
+                        label:'苏州',
+                    },{
+                        value:'天津',
+                        label:'天津',
+                    },{
+                        value:'洛阳',
+                        label:'洛阳',
+                    },{
+                        value:'广州',
+                        label:'广州',
+                    }],
+                }
+
+            },
+            methods: {
+                handleReachBottom(){
+                    return new Promise(resolve => {
+                        setTimeout(() => {
+
+                            resolve();
+                        }, 2000);
+                    });
+                },
+                toDetail(id){
+                    window.location.href = 'receiptDetail.html?id='+id
+                }
+            }
+        })
+    </script>
+  </body>
+</html>

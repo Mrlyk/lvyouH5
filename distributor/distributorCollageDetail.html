@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>汇聚同行</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/distributorCollageDetail.css">
+</head>
+<body>
+<div id="container">
+    <div class="container-fluid">
+        <div class="row header">
+            <a href="#"> < </a>
+            <span>线路详情</span>
+        </div>
+        <!--分割块-->
+        <div class="row"
+             style="height: 1rem;background-color: rgb(244,244,244);border-bottom: 1px solid rgb(121, 121, 121);">
+        </div>
+
+        <div class="row detail">
+            <p style="color: black;">线路名称：[拼单] {{title}}</p>
+            <p>发班日期：{{newStartTime}}</p>
+            <p>门市价：<span style="color: red">¥{{mPrice}}</span></p>
+            <p>结算价：<span style="color: red">¥{{jPrice}}</span></p>
+            <p>递减人数：{{dNum}}</p>
+            <p>递减价格：¥{{dPrice}}</p>
+            <p>封顶人数：{{maxNum}}</p>
+            <p>佣金：¥{{charges}}</p>
+            <p>余位数量：{{leftNum}}</p>
+            <p>出发地：{{sPlace}}</p>
+            <p>目的地：{{ePlace}}</p>
+            <p>大交通：{{transition}}</p>
+            <p>供应商信息：{{supply}}，{{supplyPhone}}</p>
+        </div>
+
+        <!--分割块-->
+        <div class="row"
+             style="height: 1rem;background-color: rgb(244,244,244);">
+        </div>
+        <!--选择日期-->
+        <div class="row selectData" @click="collageFn">
+            <span>选择日期</span>
+            <span style="position: absolute;right: 1rem;font-size: 1.6rem">> </span>
+        </div>
+        <!--分割块-->
+        <div class="row"
+             style="height: 1rem;background-color: rgb(244,244,244);">
+        </div>
+
+        <!--图片-->
+        <div class="row detailImg">
+            <img :src="detailImg" alt="图片">
+        </div>
+        <!--分割块-->
+        <div class="row"
+             style="height: 4.5rem;background-color: rgb(244,244,244);">
+        </div>
+        <!--立即拼单按钮-->
+        <div class="row collageBtn">
+            <button @click="collageFn">立即拼单</button>
+        </div>
+        <!--超出人数提示-->
+        <div class="modal fade" id="tipsModal">
+            <div class="modal-dialog" style="width: 55%">
+                <div class="modal-content">
+                    <div class="modal-body" style="padding: 2rem;">
+                        <div style="font-size: 1.2rem;">拼单人数超出当前余位数，拼单失败</div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:'#container',
+        data(){
+            return{
+                collage: true,
+                title: '宁波直飞北京纯玩五日游',
+                startTime: [
+                    '2018-10-01','2018-10-03','2018-10-05'
+                ],
+                mPrice:'4500.00',
+                jPrice:'4000.00',
+                dNum: '10',
+                dPrice: '500.00',
+                maxNum: '20',
+                destination: '北京',
+                price: '3000.00',
+                charges: '200.00',
+                leftNum:'8',
+                sPlace: '宁波',
+                ePlace: '北京',
+                transition: '飞机',
+                supply: '宁波供应商',
+                supplyPhone: '13990213241',
+
+
+                type:'国内游',
+                detailImg:'img/collageDetail.png'
+            }
+        },
+        computed:{
+            newStartTime(){
+                return this.startTime.join('、');
+            }
+        },
+        methods:{
+            collageFn(){
+                $('#tipsModal').modal('toggle');
+            }
+        }
+    })
+</script>
+</body>
+</html>

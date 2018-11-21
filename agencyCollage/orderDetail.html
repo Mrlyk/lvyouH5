@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>汇聚同行</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/orderDetail.css">
+</head>
+<body>
+<div id="container">
+    <div class="container-fluid">
+        <div class="row header">
+            <a href="#"> < </a>
+            <span>订单详情</span>
+        </div>
+        <div class="row routerTitle">
+            <span>线路信息</span>
+        </div>
+        <!--拼单-->
+        <div class="row router" v-if="collage">
+            <p>线路名称：[拼单] {{tradeName}}</p>
+            <p>目的地：{{destination}}</p>
+            <p>地接价格：¥{{price}}</p>
+            <p v-if="collage">是否拼单：是</p>
+            <p v-else>是否拼单：否</p>
+            <p>递减人数：{{dNum}}</p>
+            <p>递减价格：¥{{dPrice}}</p>
+            <p>封顶人数：{{maxNum}}</p>
+            <p>发班日期：{{newDate}}</p>
+            <p>性质：{{status}}</p>
+            <p>订单状态：{{orderStatus}}</p>
+            <p>购买日期：{{purchaseDate}}</p>
+            <p>购买人数：{{purchaseNum}}</p>
+            <p v-for="item in pInfo">姓名：{{item.cName}}；身份证：{{item.idCard}}</p>
+            <p>支付金额：¥{{payPrice}}</p>
+        </div>
+
+        <!--不拼单-->
+        <div class="row router" v-else>
+            <p>线路名称：{{tradeName}}</p>
+            <p>目的地：{{destination}}</p>
+            <p>地接价格：¥{{price}}</p>
+            <p v-if="collage">是否拼单：是</p>
+            <p v-else>是否拼单：否</p>
+            <p>封顶人数：{{maxNum}}</p>
+            <p>发班日期：{{newDate}}</p>
+            <p>性质：{{status}}</p>
+            <p>订单状态：{{orderStatus}}</p>
+            <p>购买日期：{{purchaseDate}}</p>
+            <p>购买人数：{{purchaseNum}}</p>
+            <p v-for="item in pInfo">姓名：{{item.cName}}；身份证：{{item.idCard}}</p>
+            <p>支付金额：¥{{payPrice}}</p>
+        </div>
+
+
+        <div class="row routerTitle" v-if="collage">
+            <span>拼单信息</span>
+        </div>
+        <div class="row collageInfo" v-if="collage">
+            <p>已拼单总人数：{{countNum}}</p>
+            <p>已递减价格（元/人）：<span style="color: red">¥{{rPrice}}</span></p>
+            <p>递减总价：<span style="color: red">¥{{rCountPrice}}</span></p>
+            <p>预计递减价格（元/人）：<span style="color: red">¥{{forecastPrice}}</span></p>
+
+            <!--分割虚线-->
+            <div style="height: 1px;border-bottom: 1px dashed rgb(181,181,181)"></div>
+
+            <p style="margin-top: 0.5rem">办事处信息：{{agencyInfo}}</p>
+            <p style="margin-top: 0.5rem">办事处名称：{{agencyName1}}</p>
+            <p>联系人：{{contactP1}} 拼单人数：{{collageNum1}}</p>
+            <p style="margin-top: 0.5rem">办事处名称：{{agencyName2}}</p>
+            <p>联系人：{{contactP2}} 拼单人数：{{collageNum2}}</p>
+        </div>
+        <div v-if="collage" class="row footer"
+             style="height: 1rem;background-color: rgb(244,244,244);">
+        </div>
+
+    </div>
+
+</div>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript">
+    let vm = new Vue({
+        el: '#container',
+        data() {
+            return {
+                collage: false,
+                tradeName: '宁波直飞北京纯玩五日游',
+                destination: '北京',
+                price: '3000.00',
+                dNum: '10',
+                dPrice: '500',
+                maxNum: '20',
+                date: [
+                    '2018-10-01', '2018-10-03', '2018-10-05'
+                ],
+                status: '国内游',
+                orderStatus: '已支付',
+                purchaseDate: '2018-10-01',
+                purchaseNum: '3',
+                pInfo: [
+                    {
+                        cName: '张三',
+                        idCard: '340321199911113212',
+                    }, {
+                        cName: '张三',
+                        idCard: '340321199911113212',
+                    }, {
+                        cName: '张三',
+                        idCard: '340321199911113212',
+                    },
+                ],
+                payPrice: '9000.00',
+
+                countNum: '5',
+                rPrice: '0',
+                rCountPrice: '0',
+                forecastPrice: '100',
+                agencyInfo:'',
+                agencyName1:'宁波旅游有限公司',
+                contactP1:'小张',
+                collageNum1:'3',
+                agencyName2:'宁波旅游有限公司',
+                contactP2:'小张',
+                collageNum2:'2',
+            }
+        },
+        computed: {
+            newDate() {
+                return this.date.join('、');
+            }
+        },
+        methods: {}
+    })
+</script>
+</body>
+</html>

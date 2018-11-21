@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+      <link rel="stylesheet" type="text/css" href="http://unpkg.com/iview/dist/styles/iview.css">
+      <script type="text/javascript" src="http://v1.vuejs.org/js/vue.min.js"></script>
+      <script type="text/javascript" src="http://unpkg.com/iview@1.0.1/dist/iview.min.js"></script>
+      <link rel="stylesheet" type="text/css" href="../common.css">
+    <title>我的订单</title>
+    <style>
+        body,html{
+            background: #f2f2f2;
+            height: 100%;
+        }
+        #app{
+            display: flex;
+            display: -webkit-flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        header{
+            background: #fff;
+            border-bottom: 1px solid #e4e4e4;
+            padding:.5rem 0;
+            font-size: 1rem;
+            text-align: center;
+            position: relative;
+            margin-bottom: 5px;
+        }
+        header .ivu-icon{
+            position: absolute;
+            left: 0;
+            font-size: 1.4rem;
+        }
+        .container{
+            flex: 1;
+            height: 100%;
+            overflow-y: auto;
+        }
+        .container .menu{
+            width: 100%;
+            height: 3rem;
+            line-height: 3rem;
+            display: flex;
+            display: -webkit-flex;
+            border-bottom: 1px solid #e4e4e4;
+        }
+        .container .menu span{
+            flex: 1;
+            text-align: center;
+            display: inline-block;
+        }
+        .container .menu .active{
+            color: #b60807;
+        }
+        .container .list{
+            background: #f9f9f9;
+            margin-bottom: 2px;
+            /*height: 6rem;*/
+            margin-bottom: 5px;
+            border-bottom: 1px solid #e4e4e4;
+            border-top: 1px solid #e4e4e4;
+        }
+        .container .list .list1{
+            display: flex;
+            display: -webkit-flex;
+            line-height: 2.5rem;
+            border-bottom: 1px solid #e4e4e4;
+        }
+        .container .list .list1 p{
+            flex: 1;
+            padding-left: .6rem;
+        }
+        .container .list .list1 span{
+            padding: 0 1rem;
+        }
+        .container .list .listInfo{
+            background: #f2f2f2;
+            padding: .8rem .6rem;
+            line-height: 1.8rem;
+            border-bottom: 1px solid #e4e4e4;
+        }
+        .container .list .list2{
+            display: flex;
+            display: -webkit-flex;
+            line-height: 2.4rem;
+            border-bottom: 1px solid #f2f2f2;
+        }
+        .container .list .list2 p:first-child{
+            color: #999999;
+            font-size: .5rem;
+            flex: 1;
+            padding-left: .6rem;
+
+        }
+        .container .list .list2 p:last-child{
+            padding-right: .6rem;
+        }
+        .container .list .btn{
+            text-align: right;
+            padding: .6rem 0;
+        }
+        .container .list .btn p{
+            display: inline-block;
+            margin-right: .6rem;
+            padding: 0 .5rem;
+            height: 1.6rem;
+            line-height: 1.6rem;
+            border-radius: 5px;
+        }
+        .container .list .btn p{
+            background: #b60807;
+            color: #fff;
+            border:1px solid #b60807;
+        }
+        .container .list .btn p:first-child{
+            border: 1px solid #e4e4e4;
+            background: #f9f9f9;
+            color: #333333;
+        }
+
+        .red{
+            color: #b60807;
+        }
+        .tip{
+            text-align: center;
+            line-height: 3rem;
+        }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+		<header>
+            <Icon type="ios-arrow-back" @click="back()"></Icon>
+            车队服务
+		</header>
+        <div class="container">
+            <p class="menu">
+                <span @click="change('1')" :class="{active:type==1}">发布订单</span>
+                <span @click="change('2')" :class="{active:type==2}">已抢订单</span>
+            </p>
+            <div class="list" v-for="item in list">
+                <div class="list1">
+                    <p>订单编号：{{item.cd}}</p>
+                    <span class="red" v-if="item.state==1">待支付</span>
+                    <span class="gray" v-else>已完成</span>
+                </div>
+                <div class="listInfo">
+                    <p>日期：{{item.date}}</p>
+                    <p>出发地：{{item.from}}</p>
+                    <p>目的地：{{item.to}}</p>
+                </div>
+                <div class="list2">
+                    <p>订单时间：{{item.date}}</p>
+                    <p class="red">成交价：￥{{item.price}}</p>
+                </div>
+                <div class="btn">
+                    <p @click="toDetail()">
+                        查看详情
+                    </p>
+                    <p v-if="item.state==1 && type==1">
+                        支付
+                    </p>
+                </div>
+            </div>
+            <p class="tip">已全部加载完</p>
+        </div>
+	</div>
+    <script>
+        new Vue({
+            el: '#app',
+            data() {
+                return{
+                    type:'1',
+                    list:[{
+                        cd:'15525454515',
+                        date:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0',
+                        price:'6222.00'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        date:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        date:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'1'
+                    },{
+                        data:'2015-02-02 12:22',
+                        from:'宁波',
+                        to:'上海',
+                        state:'0'
+                    }]
+                }
+
+            },
+            methods: {
+                toDetail(id){
+                    window.location.href='detail.html?id='+id
+                },
+                back(){
+                    window.history.go(-1)
+                },
+                change(type){
+                    this.type = type
+                }
+            }
+        })
+    </script>
+  </body>
+</html>
