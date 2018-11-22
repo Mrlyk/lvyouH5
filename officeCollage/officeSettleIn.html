@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Cache-control" content="no-cache,no-store,must-revalidate">
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="x-rim-auto-match" content="none">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <title>汇聚同行</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/officeSettleIn.css">
+</head>
+<body>
+<div id="container">
+    <div class="container-fluid">
+        <div class="row header">
+            <a href="#"> < </a>
+            <span>办事处入驻</span>
+        </div>
+
+        <div class="row rowMsg">
+            <div class="col-3">
+                <span>姓名：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="officeName" placeholder="请输入姓名" style="width: 100%">
+            </div>
+        </div>
+
+        <div class="row rowMsg">
+            <div class="col-3">
+                <span>联系电话：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="officePhone" placeholder="请输入联系电话" style="width: 100%">
+            </div>
+        </div>
+
+        <div class="row rowMsg">
+            <div class="col-3">
+                <span>公司名称：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="companyName" placeholder="请输入公司名称" style="width: 100%">
+            </div>
+        </div>
+
+        <div class="row rowMsg">
+            <div class="col-3">
+                <span>公司地址：</span>
+            </div>
+            <div class="col-9">
+                <input v-model="companyAdd" placeholder="请输入公司地址" style="width: 100%">
+            </div>
+        </div>
+
+        <!--目的地-->
+        <div class="row destination">
+            <div class="col-3">
+                <span>公司地址：</span>
+            </div>
+            <div class="col-9">
+                <span v-for="item in cities">
+                    <input type="checkbox" v-model="destination" :value="item.value">{{item.city}}
+                </span>
+            </div>
+        </div>
+
+        <!--验证码-->
+        <div class="row rowMsgCode row-eq-height">
+            <div class="col-3" style="padding: 0.7rem 0 0.7rem 1rem">
+                <span>验证码：</span>
+            </div>
+            <div class="col-6">
+                <input v-model="companyAdd" placeholder="请输入短信验证码" style="width: 100%">
+            </div>
+            <div class="col-3 identifyCode">
+                <button v-show="show" @click="getCode">发送验证码</button>
+                <button v-show="!show">{{count}}s</button>
+            </div>
+        </div>
+        <!--提示-->
+        <div class="row tips">
+            <span>注：短信验证码将发送至联系电话，请注意查收</span>
+        </div>
+        <!--按钮-->
+        <div class="row rowBtn pt-4">
+            <button>提交</button>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/bootstrap.js"></script>
+<script type="text/javascript" src="js/vue.js"></script>
+<script type="text/javascript">
+    let vm = new Vue({
+        el: '#container',
+        data() {
+            return {
+                show: 'true',
+                count: '',
+                timer:null,
+
+                officeName: '',
+                officePhone: '',
+                companyName: '',
+                companyAdd: '',
+                destination: [],
+                cities: [
+                    {
+                        value: 'beijing1',
+                        city: '北京1'
+                    }, {
+                        value: 'beijing2',
+                        city: '北京2'
+                    }, {
+                        value: 'beijing3',
+                        city: '北京3'
+                    }, {
+                        value: 'beijing4',
+                        city: '北京4'
+                    }, {
+                        value: 'beijing5',
+                        city: '北京'
+                    }, {
+                        value: 'beijing6',
+                        city: '北京'
+                    }, {
+                        value: 'beijing7',
+                        city: '北京'
+                    }, {
+                        value: 'beijing8',
+                        city: '北京'
+                    },
+                ]
+            }
+        },
+        methods: {
+            getCode() {
+                let TIME_COUNT = 60;
+                if (!this.timer) {
+                    console.log('1');
+                    this.count = TIME_COUNT;
+                    this.show = false;
+                    this.timer = setInterval(() => {
+                        if (this.count > 0 && this.count <= TIME_COUNT) {
+                            this.count--;
+                        } else {
+                            this.show = true;
+                            clearInterval(this.timer);
+                            this.timer = null;
+                        }
+                    }, 1000)
+                }
+
+            }
+        }
+    })
+</script>
+</body>
+</html>

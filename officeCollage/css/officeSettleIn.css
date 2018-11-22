@@ -1,0 +1,84 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    background-color: rgb(244,244,244);
+}
+
+.container-fluid{
+    background-color: white;
+}
+
+.rowMsg{
+    padding: 0.7rem 0 0.7rem 1rem;
+    align-items: center;
+    border-bottom: 1px solid rgb(121,121,121);
+}
+
+.rowMsg>.col-3{
+    padding: 0;
+}
+
+.destination{
+    padding: 0.7rem 0 0.7rem 1rem;
+    border-bottom: 1px solid rgb(121,121,121);
+}
+
+/*目的地*/
+.destination>.col-3{
+    padding: 0;
+}
+
+.destination>.col-9{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.destination>.col-9>span{
+    width: 25%;
+    margin-bottom: 0.5rem;
+}
+
+/*验证码*/
+.rowMsgCode{
+    align-items: center;
+    border-bottom: 1px solid rgb(121,121,121);
+}
+
+.rowMsgCode>.col-6{
+
+    padding-left: 1.5rem;
+}
+
+.identifyCode{
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-left: 1px solid rgb(121,121,121);
+}
+.identifyCode>button{
+    height: 100%;
+    width: 100%;
+}
+
+/*提示*/
+.tips{
+    padding: 1rem;
+    background-color: rgb(244,244,244);
+    color: rgb(101,101,101);
+}
+
+/*提交按钮*/
+.rowBtn{
+    align-items: center;
+    justify-content: center;
+    background-color: rgb(244,244,244);
+}
+
+.rowBtn>button{
+    background-color: red;
+    color: white;
+    padding: 0 2.2rem;
+    height: 2.6rem;
+    border-radius: 5px;
+}
