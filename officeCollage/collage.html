@@ -16,7 +16,7 @@
 </head>
 
 <body>
-<div id="container">
+<div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
             <a href="#"> < </a>
@@ -26,23 +26,19 @@
         <!--头部搜索框-->
         <div class="rowPadding">
             <div class="row myBorder">
-                    <span>目的地：</span>
-                    <select style="color: rgb(101,101,101);outline: none" v-model="destination">
-                        <option value="d0" disabled>请选择目的地</option>
-                        <option value="d1">目的地1</option>
-                        <option value="d2">目的地2</option>
-                    </select>
+                <span>目的地：</span>
+                <input v-model="destination" style="width: 60%;outline: none;" placeholder="请输入线路名称">
             </div>
 
             <div class="row myBorder">
-                    <span>线路名称：</span>
-                    <input style="width: 60%;outline: none;" placeholder="请输入线路名称">
+                <span>线路名称：</span>
+                <input v-model="routerName" style="width: 60%;outline: none;" placeholder="请输入线路名称">
             </div>
         </div>
 
         <!--搜索按钮-->
         <div class="row btnRow">
-            <button class="searchBtn" @click="search">搜索</button>
+            <button class="searchBtn" @click="search(destination,routerName)">搜索</button>
         </div>
         <!--分割块-->
         <div class="row"
@@ -50,30 +46,29 @@
         </div>
 
         <!--拼单列表-->
-        <div class="row collage" v-for="item in collage" @click="toDetail">
+        <div class="row collage" v-for="item in collage" @click="toDetail(item.id)">
             <div class="col-4">
                 <div class="collageImg">
-                    <img style="width: 100%;" :src="item.img">
+                    <img style="width: 100%;" :src="'http://114.55.95.164/tour_upFile/'+item.journeyUrl">
                 </div>
             </div>
-            <div class="col-8" v-if="item.collage">
-                <p style="color: black;font-size: 1.2rem">[拼单] {{item.title}}</p>
-                <p>目的地：{{item.destination}}</p>
-                <p>发班日期：{{item.startTime}}</p>
-                <p>地接价格：<span style="color: red">¥{{item.price}}</span></p>
-                <p>递减人数：{{item.dNum}}</p>
-                <p>递减价格：¥{{item.dPrice}}</p>
-                <p>封顶人数：{{item.maxNum}}</p>
+            <div class="col-8" v-if="item.isShare==1">
+                <p style="color: black;font-size: 1.2rem">[拼单] {{item.tourName}}</p>
+                <p>目的地：{{item.endAddr}}</p>
+                <p>发班日期：{{item.datesStr}}</p>
+                <p>地接价格：<span style="color: red">¥{{item.localPrice |toFix}}</span></p>
+                <p>递减人数：{{item.decrPenNum}}</p>
+                <p>递减价格：¥{{item.decrPrice |toFix}}</p>
+                <p>封顶人数：{{item.topPenNum}}</p>
             </div>
             <div class="col-8" v-else>
-                <p style="color:black;font-size: 1.2rem">{{item.title}}</p>
-                <p>目的地：{{item.destination}}</p>
-                <p>发班日期：{{item.startTime}}</p>
-                <p>地接价格：¥{{item.price}}</p>
-                <p>封顶人数：¥{{item.maxNum}}</p>
+                <p style="color:black;font-size: 1.2rem">{{item.tourName}}</p>
+                <p>目的地：{{item.endAddr}}</p>
+                <p>发班日期：{{item.datesStr}}</p>
+                <p>地接价格：<span style="color: red">¥{{item.localPrice |toFix}}</span></p>
+                <p>封顶人数：¥{{item.topPenNum}}</p>
             </div>
         </div>
-
 
     </div>
 </div>
@@ -86,7 +81,9 @@
         el: '#container',
         data() {
             return {
-                destination: 'd0',
+                //搜索
+                destination: '',
+                routerName: '',
 
                 collage: [
                     {
@@ -99,36 +96,89 @@
                         dNum: '10',
                         dPrice: '500.00',
                         maxNum: '20',
-                    }, {
-                        collage: false,
-                        img: 'img/collage.png',
-                        title: '宁波直飞北京纯玩五日游',
-                        destination: '北京',
-                        startTime: '2018-10-01',
-                        price: '3000.00',
-                        dNum: '10',
-                        dPrice: '500.00',
-                        maxNum: '20',
-                    }, {
-                        collage: true,
-                        img: 'img/collage.png',
-                        title: '宁波直飞北京纯玩五日游',
-                        destination: '北京',
-                        startTime: '2018-10-01',
-                        price: '3000.00',
-                        dNum: '10',
-                        dPrice: '500.00',
-                        maxNum: '20',
                     },
-                ]
+                ],
+                currentPage: 1,
+                pageSize: 4,
+            }
+        },
+        mounted() {
+            this.getOrder();
+            this.handScroll();
+        },
+        filters: {
+            toFix(val) {
+                if (val) {
+                    return val.toFixed(2);
+                }
             }
         },
         methods: {
-            search() {
+            search(des, rN) {
+                let that = this ;
+                $.ajax({
+                    url: 'http://114.55.95.164/tour/wechat/shareServer/shareLocalOrdList',
+                    type: 'get',
+                    data: {
+                        'endAddr':des,
+                        'tourName':rN,
+                        'currentPage': that.currentPage,
+                        'showCount': that.pageSize,
+                    },
+                    success(res) {
+                        if (res.resultCode == 100) {
+                            that.collage = res.data;
+                        }
+                        else {
+                            console.log(res.resultMessage);
+                        }
+                    },
+                    error(err) {
+                        console.log(err);
+                    }
+                })
 
             },
-            toDetail(){
+            toDetail(id) {
+                location.href='./collageDetail.html?id='+id;
+            },
 
+            handScroll() {
+                //滑动到底部再加载
+                var self = this;
+                $(window).scroll(function () {
+                    let scrollTop = $(this).scrollTop();
+                    let scrollHeight = $(document).height();
+                    let windowHeight = $(this).height();
+                    if (scrollTop + windowHeight >= scrollHeight) {
+                        self.pageSize = self.pageSize + 10;
+                        self.getOrder();
+                    }
+                });
+            },
+
+            //    获取订单列表
+            getOrder() {
+                let that = this;
+                $.ajax({
+                    url: 'http://114.55.95.164/tour/wechat/shareServer/shareLocalOrdList',
+                    type: 'get',
+                    data: {
+                        'currentPage': that.currentPage,
+                        'showCount': that.pageSize,
+                    },
+                    success(res) {
+                        if (res.resultCode == 100) {
+                            that.collage = res.data;
+                        }
+                        else {
+                            console.log(res.resultMessage);
+                        }
+                    },
+                    error(err) {
+                        console.log(err);
+                    }
+                })
             }
         }
     })

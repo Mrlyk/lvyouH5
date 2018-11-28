@@ -17,7 +17,7 @@
 <div id="container">
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="javascript:history.go(-1)"> < </a>
             <span>立即拼单</span>
         </div>
 
@@ -37,13 +37,13 @@
                 <span>姓名：</span>
             </div>
             <div class="col-9">
-                <input v-model="name[item]">
+                <input v-model="name[item-1]">
             </div>
             <div class="col-3">
                 <span>身份证号：</span>
             </div>
             <div class="col-9">
-                <input v-model="idCard[item]">
+                <input v-model="idCard[item-1]">
             </div>
         </div>
         <!--分割线-->
@@ -74,25 +74,103 @@
         data() {
             return {
                 dNum: '',
-                name:[],
-                idCard:[],
+                name: [],
+                idCard: [],
+
+                shareOrdId: '',
+                starTime: '',
+                price: '',
             }
+        },
+        mounted() {
+            this.getMsg();
         },
         computed: {
             newPrice() {
-                return (this.dNum * 3000).toFixed(2);
+                return (this.dNum * this.price).toFixed(2);
             },
-            newdNum(){
-                if(this.dNum==''){
+            newdNum() {
+                if (this.dNum == '') {
                     return 3;
-                }else{
+                } else {
                     return Number(this.dNum);
                 }
             }
         },
         methods: {
             pay() {
-                console.log(this.name);
+                let that = this;
+                let flag = true;
+                //验证姓名和身份证号
+                if (this.dNum && this.name.length == this.idCard.length && this.name.length == this.dNum) {
+                    this.name.forEach(item => {
+                        if (item == '') {
+                            alert('请输入所有人的姓名');
+                            flag = false;
+                        }
+                    });
+                    this.idCard.forEach(item => {
+                        let reg = /(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$)/;
+                        if (item == '') {
+                            alert('请输入所有人的身份证号');
+                            flag = false;
+                        } else if (item) {
+                            if (!reg.test(item)) {
+                                alert('存在不正确的身份证格式:' + item);
+                                flag = false;
+                            }
+                        }
+                    });
+
+                    if (flag) {
+                        $.ajax({
+                            url: 'http://114.55.95.164/tour/wechat/shareServer/saveShareOrd',
+                            type: 'post',
+                            data: {
+                                'shareOrdId': that.shareOrdId,
+                                'starTime': that.starTime,
+                                'nameArrStr': that.name.join(','),
+                                'idCardArrStr': that.idCard.join(','),
+                            },
+                            success(res) {
+                                if (res.resultCode == 100) {
+                                    alert(res.resultMessage);
+                                    location.href='./myOrder.html';
+
+                                } else {
+                                    alert(`${res.resultMessage},请检查姓名身份证是否输入正确`);
+                                }
+
+
+                            },
+                            error(e) {
+                                console.log(e);
+                            }
+                        })
+                    }
+
+
+                } else {
+                    alert('请输入人数和人员信息');
+                }
+
+            },
+
+            //获取url参数
+            getParam(name) {
+                let reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+                let r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    return decodeURI(r[2]);
+                }
+                return null
+            },
+
+            //获取订单号和时间以及价格
+            getMsg() {
+                this.shareOrdId = this.getParam('shareOrdId');
+                this.starTime = this.getParam('starTime');
+                this.price = this.getParam('localPrice');
             }
         }
 

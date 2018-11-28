@@ -3,31 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="7b030421-8645-413a-9d61-b87adb3759a0" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/collage.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/collage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/collageDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/collageDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/createCollage.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/createCollage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/createOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/createOrder.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/bootstrap.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/bootstrap.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/collage.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/collage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/collageDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/collageDetail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/common.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/createCollage.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/createCollage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/createOrder.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/createOrder.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/identityInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/identityInfo.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/myOrder.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/myOrder.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/orderDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/orderDetail.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/css/orderDetailCopy.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/orderDetailCopy.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/identityInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/identityInfo.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/img/collage.png" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/img/collage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/img/collageDetail.png" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/img/collageDetail.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/img/createCollage.png" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/img/createCollage.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/img/selectData.png" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/img/selectData.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/js/bootstrap.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/js/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/js/jquery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/js/vue.js" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/js/vue.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/myOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/myOrder.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/orderDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/orderDetail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/agencyCollage/orderDetailCopy.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/orderDetailCopy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/collage.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/collage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/collageDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/collageDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/createCollage.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/createCollage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/createOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/createOrder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/css/collageDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/collageDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/css/common.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/common.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/css/createCollage.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/createCollage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/css/identityInfo.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/identityInfo.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/css/myOrder.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/myOrder.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/css/officeSettleIn.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/officeSettleIn.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/css/orderDetail.css" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/css/orderDetail.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/identityInfo.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/identityInfo.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/myOrder.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/myOrder.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/officeSettleIn.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/officeSettleIn.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeCollage/orderDetail.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/orderDetail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/officeOrders/admission.html" beforeDir="false" afterPath="$PROJECT_DIR$/officeCollage/admission.html" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -43,42 +34,54 @@
     <favorites_list name="lvyouH5" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.64644015">
-      <split-first>
-        <leaf>
-          <file leaf-file-name="officeSettleIn.html" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/officeCollage/officeSettleIn.html">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="342">
-                  <caret line="81" column="49" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
-                  <folding>
-                    <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#input#0;n#div#1;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#input#0;n#div#1;n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#div#0;n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                    <element signature="n#style#0;n#input#0;n#div#1;n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf>
-          <file leaf-file-name="officeSettleIn.css" pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/officeCollage/css/officeSettleIn.css">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="156">
-                  <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="createCollage.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/officeCollage/createCollage.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="24">
+              <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
+              <folding>
+                <element signature="n#style#0;n#img#0;n#div#1;n#div#12;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#button#0;n#div#1;n#div#12;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="e#4631#4638#1" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#14;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#14;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#14;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#14;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <marker date="1543398976617" expanded="true" signature="8336:8348" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="collageDetail.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/officeCollage/collageDetail.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="270">
+              <caret line="93" column="118" selection-start-line="93" selection-start-column="110" selection-end-line="93" selection-end-column="118" />
+              <folding>
+                <element signature="n#style#0;n#div#8;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#span#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="createCollage.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/officeCollage/css/createCollage.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="311">
+              <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -86,6 +89,7 @@
         <option value="Less File" />
         <option value="HTML File" />
         <option value="CSS File" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -95,13 +99,26 @@
       <find>getMyBuyOrd</find>
       <find>addrList</find>
       <find>validate</find>
-      <find>name</find>
       <find>handleSubmit</find>
       <find>formValidate</find>
       <find>ruleValidate</find>
       <find>getTime</find>
       <find>img</find>
       <find>collage</find>
+      <find>show</find>
+      <find>desti</find>
+      <find>name</find>
+      <find>i.</find>
+      <find>start</find>
+      <find>sub</find>
+      <find>subBtn</find>
+      <find>des</find>
+      <find>modal</find>
+      <find>dates</find>
+      <find>v-if</find>
+      <find>agen</find>
+      <find>uploadImg</find>
+      <find>cons</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -110,22 +127,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/release.html" />
-        <option value="$PROJECT_DIR$/release/robbing.html" />
-        <option value="$PROJECT_DIR$/release/releaseList.html" />
-        <option value="$PROJECT_DIR$/robbing/list.html" />
-        <option value="$PROJECT_DIR$/robbing/detail.html" />
-        <option value="$PROJECT_DIR$/myOrder/list.html" />
-        <option value="$PROJECT_DIR$/myOrder/detail.html" />
-        <option value="$PROJECT_DIR$/release/release.html" />
-        <option value="$PROJECT_DIR$/officeOrders/admission.html" />
-        <option value="$PROJECT_DIR$/officeOrders/receipt.html" />
-        <option value="$PROJECT_DIR$/officeOrders/receiptDetail.html" />
-        <option value="$PROJECT_DIR$/collage/css/common.css" />
-        <option value="$PROJECT_DIR$/collage/css/collage.less" />
-        <option value="$PROJECT_DIR$/collage/collage.html" />
-        <option value="$PROJECT_DIR$/collage/collageDetail.html" />
-        <option value="$PROJECT_DIR$/collage/css/collageDetail.css" />
         <option value="$PROJECT_DIR$/collage/css/collage.css" />
         <option value="$PROJECT_DIR$/collage/css/identityInfo.css" />
         <option value="$PROJECT_DIR$/collage/identityInfo.html" />
@@ -160,12 +161,34 @@
         <option value="$PROJECT_DIR$/distributor/disMyOrderDetail.html" />
         <option value="$PROJECT_DIR$/distributor/css/disMyOrderDetail.css" />
         <option value="$PROJECT_DIR$/officeCollage/css/officeSettleIn.css" />
+        <option value="$PROJECT_DIR$/officeCollage/js/regCheck.js" />
+        <option value="$PROJECT_DIR$/officeOrders/admission.html" />
+        <option value="$PROJECT_DIR$/officeCollage/admission.html" />
+        <option value="$PROJECT_DIR$/officeCollage/css/collageDetail.css" />
+        <option value="$PROJECT_DIR$/officeCollage/css/identityInfo.css" />
+        <option value="$PROJECT_DIR$/officeCollage/collageDetail.html" />
+        <option value="$PROJECT_DIR$/officeCollage/css/common.css" />
+        <option value="$PROJECT_DIR$/officeCollage/collage.html" />
+        <option value="$PROJECT_DIR$/officeCollage/identityInfo.html" />
+        <option value="$PROJECT_DIR$/officeCollage/css/myOrder.css" />
+        <option value="$PROJECT_DIR$/officeCollage/css/orderDetail.css" />
+        <option value="$PROJECT_DIR$/officeCollage/orderDetail.html" />
+        <option value="$PROJECT_DIR$/officeCollage/createOrder.html" />
+        <option value="$PROJECT_DIR$/officeCollage/myOrder.html" />
+        <option value="$PROJECT_DIR$/officeCollage/css/createCollage.css" />
         <option value="$PROJECT_DIR$/officeCollage/officeSettleIn.html" />
+        <option value="$PROJECT_DIR$/officeCollage/createCollage.html" />
       </list>
     </option>
   </component>
   <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
+  </component>
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
@@ -174,10 +197,8 @@
     <packageJsonPaths />
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="60" />
-    <option name="y" value="39" />
-    <option name="width" value="1155" />
-    <option name="height" value="797" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
@@ -188,7 +209,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -205,11 +225,6 @@
             <path>
               <item name="lvyouH5" type="b2602c69:ProjectViewProjectNode" />
               <item name="lvyouH5" type="462c0819:PsiDirectoryNode" />
-              <item name="myOrder" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="lvyouH5" type="b2602c69:ProjectViewProjectNode" />
-              <item name="lvyouH5" type="462c0819:PsiDirectoryNode" />
               <item name="officeCollage" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -221,12 +236,20 @@
             <path>
               <item name="lvyouH5" type="b2602c69:ProjectViewProjectNode" />
               <item name="lvyouH5" type="462c0819:PsiDirectoryNode" />
-              <item name="officeOrders" type="462c0819:PsiDirectoryNode" />
+              <item name="officeCollage" type="462c0819:PsiDirectoryNode" />
+              <item name="img" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="lvyouH5" type="b2602c69:ProjectViewProjectNode" />
+              <item name="lvyouH5" type="462c0819:PsiDirectoryNode" />
+              <item name="officeCollage" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -238,6 +261,7 @@
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
+    <property name="settings.editor.selected.configurable" value="Settings.JavaScript" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -245,6 +269,8 @@
       <recent name="$PROJECT_DIR$/distributor" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/officeCollage/img" />
+      <recent name="$PROJECT_DIR$/officeCollage" />
       <recent name="$PROJECT_DIR$/distributor/img" />
       <recent name="$PROJECT_DIR$/collage/img" />
     </key>
@@ -324,15 +350,21 @@
       <workItem from="1542760199576" duration="14297000" />
       <workItem from="1542780694386" duration="12563000" />
       <workItem from="1542793705981" duration="60000" />
-      <workItem from="1542852014062" duration="6188000" />
+      <workItem from="1542852014062" duration="6779000" />
+      <workItem from="1542862859031" duration="72000" />
+      <workItem from="1542871644732" duration="8814000" />
+      <workItem from="1542936213976" duration="5867000" />
+      <workItem from="1543194859281" duration="29888000" />
+      <workItem from="1543284055820" duration="21856000" />
+      <workItem from="1543365088658" duration="22907000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95439000" />
+    <option name="totallyTimeSpent" value="185434000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="6" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
@@ -348,7 +380,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" weight="0.32969698" />
       <window_info id="Capture Tool" order="2" />
       <window_info id="Designer" order="2" />
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49939394" weight="0.115879826" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49939394" visible="true" weight="0.12446352" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -364,6 +396,36 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
     </layout>
+    <layout-to-restore>
+      <window_info anchor="right" id="Palette" order="3" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="right" id="Capture Analysis" order="4" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info anchor="right" id="Theme Preview" order="5" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49939394" visible="true" weight="0.123032905" />
+      <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
+      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
+      <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info id="Image Layers" order="2" />
+      <window_info id="Designer" order="3" />
+      <window_info id="UI Designer" order="4" />
+      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
+      <window_info anchor="right" id="Palette&#9;" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="10" weight="0.32969698" />
+      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info id="Favorites" order="6" sideWeight="0.50060606" side_tool="true" weight="0.115879826" />
+      <window_info id="Capture Tool" order="5" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="right" id="Database" order="6" />
+      <window_info anchor="right" id="Maven Projects" order="8" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -371,126 +433,12 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <option name="time" value="2" />
+    </breakpoint-manager>
+  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/officeCollage/css/common.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="642">
-          <caret line="45" lean-forward="true" selection-start-line="45" selection-end-line="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/css/orderDetailCopy.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="278">
-          <caret line="28" column="16" selection-start-line="28" selection-start-column="16" selection-end-line="28" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distributor/js/vue.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="13" column="2" lean-forward="true" selection-start-line="13" selection-start-column="2" selection-end-line="13" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distributor/css/distributorCollage.html" />
-    <entry file="file://$PROJECT_DIR$/distributor/css/common.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="12" column="16" lean-forward="true" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distributor/css/bootstrap.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="16" selection-start-line="7" selection-start-column="16" selection-end-line="7" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/css/collage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
-          <caret line="38" column="22" lean-forward="true" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/collageDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="7" column="19" selection-end-line="111" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/lib/platform-impl.jar!/resources/html5-schema/html5/meta.rnc">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="342" column="14" selection-end-line="455" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/css/collageDetail.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="13" column="22" lean-forward="true" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distributor/distributorCollage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="61" column="16" lean-forward="true" selection-start-line="61" selection-start-column="16" selection-end-line="62" selection-end-column="75" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/orderDetailCopy.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="367">
-          <caret line="98" column="29" lean-forward="true" selection-start-line="98" selection-start-column="29" selection-end-line="98" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distributor/img/disCollageSuccess.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distributor/disIdentityInfo.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="67" selection-start-line="67" selection-end-line="69" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/createCollage.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="593">
-          <caret line="173" column="10" lean-forward="true" selection-start-line="173" selection-start-column="10" selection-end-line="173" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/css/createOrder.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="353">
-          <caret line="59" lean-forward="true" selection-start-line="59" selection-end-line="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/css/createCollage.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="350">
-          <caret line="58" column="15" lean-forward="true" selection-start-line="58" selection-start-column="15" selection-end-line="58" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distributor/disCollageSuccess.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="21" column="11" selection-start-line="21" selection-start-column="11" selection-end-line="21" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/distributor/img/collage.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/distributor/img/collageDetail.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -557,13 +505,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/orderDetail.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="108" column="16" lean-forward="true" selection-start-line="108" selection-start-column="16" selection-end-line="123" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/distributor/disMyOrderDetail.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="579">
@@ -624,10 +565,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="404">
           <caret line="58" lean-forward="true" selection-start-line="58" selection-end-line="58" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#0;n#!!top" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -673,38 +610,175 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/officeOrders/admission.html">
+    <entry file="file://$PROJECT_DIR$/officeCollage/js/regCheck.js" />
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/officeSettleIn.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="250">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        <state relative-caret-position="325">
+          <caret line="13" column="24" lean-forward="true" selection-start-line="13" selection-start-column="24" selection-end-line="13" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/admission.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1309">
+          <caret line="59" column="14" lean-forward="true" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="178">
+          <caret line="5321" column="1" lean-forward="true" selection-start-line="5321" selection-start-column="1" selection-end-line="5321" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/collage.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="38" column="22" lean-forward="true" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/common.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="350">
+          <caret line="38" column="16" selection-start-line="38" selection-start-column="16" selection-end-line="38" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/addr/jquery.min.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="23254">
+          <caret line="5" column="2822" selection-start-line="5" selection-start-column="2822" selection-end-line="5" selection-end-column="2822" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/identityInfo.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="445">
+          <caret line="133" column="30" lean-forward="true" selection-start-line="133" selection-start-column="30" selection-end-line="133" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/identityInfo.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="9" column="8" lean-forward="true" selection-start-line="9" selection-start-column="8" selection-end-line="9" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/myOrder.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="453">
+          <caret line="75" column="28" lean-forward="true" selection-start-line="75" selection-start-column="28" selection-end-line="75" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/collageDetail.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-106">
+          <caret line="43" column="8" lean-forward="true" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/orderDetail.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="164">
+          <caret line="67" column="23" selection-start-line="67" selection-start-column="23" selection-end-line="67" selection-end-column="23" />
+          <folding>
+            <element signature="n#style#0;n#p#0;n#div#1;n#div#5;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#1;n#div#1;n#div#5;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/orderDetail.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="353">
+          <caret line="19" column="1" lean-forward="true" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/myOrder.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="10" column="16" lean-forward="true" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/createOrder.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="22" column="32" lean-forward="true" selection-start-line="22" selection-start-column="32" selection-end-line="22" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/img/collageDetail.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/img/collage.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/img/selectData.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/img/exit.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/css/createCollage.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="29" column="1" selection-start-line="29" selection-start-column="1" selection-end-line="29" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/officeCollage/collage.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="366">
-          <caret line="77" column="10" lean-forward="true" selection-start-line="77" selection-start-column="10" selection-end-line="77" selection-end-column="10" />
+        <state relative-caret-position="446">
+          <caret line="163" column="26" selection-start-line="163" selection-start-column="26" selection-end-line="163" selection-end-column="46" />
+          <folding>
+            <element signature="n#style#0;n#input#0;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/officeCollage/css/officeSettleIn.css">
+    <entry file="file://$PROJECT_DIR$/officeCollage/collageDetail.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="52" column="14" lean-forward="true" selection-start-line="52" selection-start-column="14" selection-end-line="52" selection-end-column="14" />
+        <state relative-caret-position="270">
+          <caret line="93" column="118" selection-start-line="93" selection-start-column="110" selection-end-line="93" selection-end-column="118" />
+          <folding>
+            <element signature="n#style#0;n#div#8;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#span#1;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#10;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/officeCollage/officeSettleIn.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="81" column="49" selection-start-line="81" selection-start-column="49" selection-end-line="81" selection-end-column="49" />
+        <state relative-caret-position="135">
+          <caret line="224" column="20" selection-start-line="224" selection-start-column="20" selection-end-line="224" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/officeCollage/createCollage.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="24">
+          <caret line="200" column="38" selection-start-line="200" selection-start-column="38" selection-end-line="200" selection-end-column="38" />
           <folding>
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#1;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#2;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#3;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#4;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#0;n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#input#0;n#div#1;n#div#6;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#1;n#div#12;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#button#0;n#div#1;n#div#12;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#4631#4638#1" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#14;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#div#0;n#div#14;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#img#0;n#div#0;n#div#0;n#div#0;n#div#14;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#0;n#div#0;n#div#0;n#div#0;n#div#14;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <marker date="1543398976617" expanded="true" signature="8336:8348" ph="..." />
           </folding>
         </state>
       </provider>

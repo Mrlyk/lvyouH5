@@ -22,7 +22,12 @@
 .tradeIntroduce>.col-3{
     padding: 0;
 }
+.tradeIntroduce>.col-9{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
 
+}
 .tradeIntroduce>.col-9>label{
     width: 6rem;
     height: 6rem;
@@ -31,6 +36,12 @@
     text-align: center;
     display: block;
     border: 1px solid rgb(161,161,161);
+}
+
+.tradeIntroduce>.col-9>button{
+    position: relative;
+    left: -2.5rem;
+    top: -1rem;
 }
 
 /*发布按钮*/

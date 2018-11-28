@@ -32,6 +32,15 @@ body {
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+}
+
+/*vue数据未渲染完成式不显示*/
+[v-cloak] {
+    display: none;
+}
+
 .container-fluid {
     font-size: 1.1rem;
 

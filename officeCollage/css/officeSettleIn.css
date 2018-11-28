@@ -53,12 +53,13 @@ html,body{
 .identifyCode{
     display: flex;
     align-items: center;
-    padding: 0.5rem 0;
+    padding: 0.6rem 0;
     border-left: 1px solid rgb(121,121,121);
 }
 .identifyCode>button{
     height: 100%;
     width: 100%;
+    padding: 0;
 }
 
 /*提示*/

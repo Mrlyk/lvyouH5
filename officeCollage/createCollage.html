@@ -17,7 +17,7 @@
     <link rel="stylesheet" type="text/css" href="css/createCollage.css">
 </head>
 <body>
-<div id="container">
+<div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
             <a href="#"> < </a>
@@ -40,6 +40,8 @@
                 <el-date-picker
                         type="dates"
                         v-model="timeValue"
+                        format="yyyy-MM-dd"
+                        value-format="yyyy-MM-dd"
                         placeholder="请选择日期"
                 >
                 </el-date-picker>
@@ -51,7 +53,7 @@
                 <span>门市价：</span>
             </div>
             <div class="col-9">
-                <input v-model="mPrice" placeholder="请输入门市价">
+                <input required="required" v-model="mPrice" placeholder="请输入门市价">
             </div>
         </div>
         <div class="row createCollage">
@@ -123,8 +125,14 @@
                 <span>行程介绍：</span>
             </div>
             <div class="col-9">
-                <label for="upload"><i class="el-icon-plus"></i> </label>
-                <input id="upload" type="file" style="display: none">
+                <img :src="uploadImg?uploadImg:null" v-show="uploadImg"
+                     style="width: 6rem;height: 6rem;margin-right: 2rem">
+                <label v-show="!uploadImg" for="upload"><i class="el-icon-plus"></i> </label>
+
+                <input id="upload" ref="uploadImg" type="file" v-show='false' @change="changeImg">
+
+                <button v-if="uploadImg" @click="deleteImg" title="删除"><span style="font-size: 2rem">&times;</span>
+                </button>
             </div>
         </div>
 
@@ -136,12 +144,10 @@
         <div class="modal fade" id="subSuccess">
             <div class="modal-dialog" style="width: 40%;">
                 <div class="modal-content">
-
                     <div class="modal-body" style="text-align: center">
                         <img src="./img/createCollage.png" style="width: 30%;margin-bottom: 1rem">
                         <p style="font-size: 1rem;color: #1c7430">发布成功!</p>
                     </div>
-
                 </div>
             </div>
         </div>
@@ -170,11 +176,122 @@
                 sPlace: '',
                 ePlace: '',
                 transition: '',
+                imgUrl: '',
+
+                file: '',
+                uploadImg: '',
             }
         },
         methods: {
             sub() {
-                $('#subSuccess').modal('toggle');
+                let that = this;
+                let flag = false;
+                // let dates = this.timeValue.map(item => {
+                //     let obj = {};
+                //     obj['starTime'] = item;
+                //     return obj;
+                // });
+                // console.log(dates[0]);
+
+                //传图片
+                let files = that.$refs.uploadImg.files[0];
+                if (files) {
+                    let data = new FormData();
+                    data.append('file', files);
+                    console.log(data);
+                    $.ajax({
+                        url: 'http://114.55.95.164/tour/system/image/upload',
+                        type: 'post',
+                        async: false,
+                        processData: false, //取消预处理对象
+                        contentType: false,   // 不设置内容类型
+                        data: data, //FormData数据
+                        success(res) {
+                            if (res.resultCode == 100) {
+                                that.imgUrl = res.data.imgUrl;
+                                flag = true;
+                            } else {
+                                flag = false;
+                                alert(res.resultMessage);
+                            }
+                        },
+                        error(e) {
+                            console.log(e);
+                        }
+                    })
+                }else {
+                    alert('请上传行程介绍图片');
+                    return;
+                };
+
+                //判断是否所有信息都填写了
+                if (this.title && this.timeValue && this.mPrice && this.jPrice && this.dNum && this.dPrice && this.fNum
+                    && this.charges && this.sPlace && this.ePlace && this.transition && this.uploadImg && flag) {
+                    $.ajax({
+                        url: 'http://114.55.95.164/tour/wechat/shareServer/add',
+                        type: 'post',
+                        async: false,
+
+                        data: {
+                            'tourName': that.title,
+                            'datesStr': that.timeValue.join(','),
+                            'fansPrice': that.mPrice,
+                            'storePrice': that.jPrice,
+                            'decrPenNum': that.dNum,
+                            'decrPrice': that.dPrice,
+                            'topPenNum': that.fNum,
+                            'brokerage': that.charges,
+                            'startAddr': that.sPlace,
+                            'endAddr': that.ePlace,
+                            'bigTraffic': that.transition,
+                            'journeyUrl': that.imgUrl,
+                        },
+                        success(res) {
+                            if (res.resultCode == 100) {
+                                flag = true;
+                            } else {
+                                console.log(res.resultMessage)
+                                flag = false;
+                            }
+                        },
+                        error(e) {
+                            console.log(e);
+                        }
+                    });
+                }
+                else {
+                    flag = false;
+                    alert('请将所有信息填写完整');
+                }
+
+                if (flag) {
+                    $('#subSuccess').modal('toggle');
+                }
+                ;
+            },
+
+            //    上传图片
+            upImg(e) {
+
+            },
+
+            //删除图片
+            deleteImg() {
+                this.uploadImg = '';
+            },
+
+            changeImg(e) {
+                let file = e.target.files[0];
+                this.file = file;
+                //使用fileReader预览文件
+                let reader = new FileReader();
+                let that = this;
+                reader.readAsDataURL(file);
+                //FileReader读取成功时触发
+                reader.onload = function () {
+                    that.uploadImg = this.result;
+                }
+
             }
         }
     })

@@ -14,71 +14,72 @@
     <link rel="stylesheet" type="text/css" href="css/orderDetail.css">
 </head>
 <body>
-<div id="container">
+<div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="javascript:history.go(-1)"> < </a>
             <span>订单详情</span>
         </div>
         <div class="row routerTitle">
             <span>线路信息</span>
         </div>
         <!--拼单-->
-        <div class="row router" v-if="collage">
+        <div class="row router" v-if="collage==1">
             <p>线路名称：[拼单] {{tradeName}}</p>
             <p>目的地：{{destination}}</p>
-            <p>地接价格：¥{{price}}</p>
-            <p v-if="collage">是否拼单：是</p>
-            <p v-else>是否拼单：否</p>
+            <p>地接价格：¥{{price | toFixed}}</p>
+            <p>是否拼单：是</p>
             <p>递减人数：{{dNum}}</p>
-            <p>递减价格：¥{{dPrice}}</p>
+            <p>递减价格：¥{{dPrice | toFixed}}</p>
             <p>封顶人数：{{maxNum}}</p>
-            <p>发班日期：{{newDate}}</p>
+            <p>发班日期：{{date |toSplit}}</p>
             <p>性质：{{status}}</p>
-            <p>订单状态：{{orderStatus}}</p>
-            <p>购买日期：{{purchaseDate}}</p>
+            <p v-if="orderStatus==1">订单状态：待支付</p>
+            <p v-else>订单状态：已支付</p>
+            <p>订单创建日期：{{purchaseDate}}</p>
             <p>购买人数：{{purchaseNum}}</p>
-            <p v-for="item in pInfo">姓名：{{item.cName}}；身份证：{{item.idCard}}</p>
-            <p>支付金额：¥{{payPrice}}</p>
+            <p v-for="item in pInfo">姓名：{{item.name}}；身份证：{{item.idCard}}</p>
+            <p>支付金额：¥{{payPrice | toFixed}}</p>
         </div>
 
         <!--不拼单-->
         <div class="row router" v-else>
             <p>线路名称：{{tradeName}}</p>
             <p>目的地：{{destination}}</p>
-            <p>地接价格：¥{{price}}</p>
-            <p v-if="collage">是否拼单：是</p>
-            <p v-else>是否拼单：否</p>
+            <p>地接价格：¥{{price | toFixed}}</p>
+            <p>是否拼单：否</p>
             <p>封顶人数：{{maxNum}}</p>
-            <p>发班日期：{{newDate}}</p>
+            <p>发班日期：{{date | toSplit}}</p>
             <p>性质：{{status}}</p>
-            <p>订单状态：{{orderStatus}}</p>
-            <p>购买日期：{{purchaseDate}}</p>
+            <p v-if="orderStatus==1">订单状态：待支付</p>
+            <p v-else>订单状态：已支付</p>
+            <p>订单创建日期：{{purchaseDate}}</p>
             <p>购买人数：{{purchaseNum}}</p>
             <p v-for="item in pInfo">姓名：{{item.cName}}；身份证：{{item.idCard}}</p>
-            <p>支付金额：¥{{payPrice}}</p>
+            <p>支付金额：¥{{payPrice | toFixed}}</p>
         </div>
 
-
-        <div class="row routerTitle" v-if="collage">
+        <!--拼单底部-->
+        <div class="row routerTitle" v-if="collage==1">
             <span>拼单信息</span>
         </div>
-        <div class="row collageInfo" v-if="collage">
+        <div class="row collageInfo" v-if="collage==1">
             <p>已拼单总人数：{{countNum}}</p>
-            <p>已递减价格（元/人）：<span style="color: red">¥{{rPrice}}</span></p>
+            <p>已递减人均价格（元/人）：<span style="color: red">¥{{rPrice}}</span></p>
             <p>递减总价：<span style="color: red">¥{{rCountPrice}}</span></p>
             <p>预计递减价格（元/人）：<span style="color: red">¥{{forecastPrice}}</span></p>
 
             <!--分割虚线-->
             <div style="height: 1px;border-bottom: 1px dashed rgb(181,181,181)"></div>
 
-            <p style="margin-top: 0.5rem">办事处信息：{{agencyInfo}}</p>
-            <p style="margin-top: 0.5rem">办事处名称：{{agencyName1}}</p>
-            <p>联系人：{{contactP1}} 拼单人数：{{collageNum1}}</p>
-            <p style="margin-top: 0.5rem">办事处名称：{{agencyName2}}</p>
-            <p>联系人：{{contactP2}} 拼单人数：{{collageNum2}}</p>
+            <p style="margin-top: 0.5rem">办事处信息：</p>
+            <div v-for="item in orderUser">
+                <p style="margin-top: 0.5rem;">办事处名称：{{item.companyName}}</p>
+                <p>联系人：{{item.contacts}} <span style="margin-left: 10%">拼单人数：{{item.totalBuyNum}}</span></p>
+            </div>
+
         </div>
-        <div v-if="collage" class="row footer"
+        <div v-if="collage==1" class="row footer"
              style="height: 1rem;background-color: rgb(244,244,244);">
         </div>
 
@@ -95,53 +96,101 @@
         el: '#container',
         data() {
             return {
-                collage: false,
-                tradeName: '宁波直飞北京纯玩五日游',
-                destination: '北京',
-                price: '3000.00',
+                id: '',
+
+                collage: '',
+                tradeName: '',
+                destination: '',
+                price: '',
                 dNum: '10',
                 dPrice: '500',
                 maxNum: '20',
-                date: [
-                    '2018-10-01', '2018-10-03', '2018-10-05'
-                ],
-                status: '国内游',
-                orderStatus: '已支付',
+                date: '',
+                status: '',
+                orderStatus: '',
                 purchaseDate: '2018-10-01',
                 purchaseNum: '3',
-                pInfo: [
-                    {
-                        cName: '张三',
-                        idCard: '340321199911113212',
-                    }, {
-                        cName: '张三',
-                        idCard: '340321199911113212',
-                    }, {
-                        cName: '张三',
-                        idCard: '340321199911113212',
-                    },
-                ],
-                payPrice: '9000.00',
+                pInfo: [],
+                payPrice: '',
 
-                countNum: '5',
+                countNum: '0',
                 rPrice: '0',
                 rCountPrice: '0',
                 forecastPrice: '100',
-                agencyInfo:'',
-                agencyName1:'宁波旅游有限公司',
-                contactP1:'小张',
-                collageNum1:'3',
-                agencyName2:'宁波旅游有限公司',
-                contactP2:'小张',
-                collageNum2:'2',
+                orderUser:[],
             }
         },
-        computed: {
-            newDate() {
-                return this.date.join('、');
+        mounted() {
+            this.getDetail();
+        },
+        filters: {
+            toFixed(i) {
+                if (i) {
+                    return i.toFixed(2);
+                }
+            },
+
+            toSplit(i) {
+                return i.split(' ')[0];
             }
         },
-        methods: {}
+        methods: {
+            getId() {
+                let reg = new RegExp("(^|&)" + 'id' + "=([^&]*)(&|$)", "i");
+                let r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    this.id = decodeURI(r[2]);
+                }
+                return null
+            },
+            getDetail() {
+                this.getId();
+                let that = this;
+                $.ajax({
+                    url: 'http://114.55.95.164/tour/wechat/shareServer/myBuyShareOrdInfo',
+                    type: 'get',
+                    data: {
+                        'id': that.id,
+                    },
+                    success(res) {
+                        if (res.resultCode == 100) {
+                            console.log(res);
+                            let shareOrd = res.data.shareOrd;
+                            let shareOrdUserBuy = res.data.shareOrdUserBuy;
+                            let shareOrdUserBuyList = res.data.shareOrdUserBuyList;
+                            let shareOrdUserInfoList = res.data.shareOrdUserInfoList;
+
+                            //信息赋值
+                            that.collage = shareOrd.isShare;
+                            that.tradeName = shareOrd.tourName;
+                            that.destination = shareOrd.endAddr;
+                            that.price = shareOrd.localPrice;
+                            that.dNum = shareOrd.decrPenNum;
+                            that.dPrice = shareOrd.decrPrice;
+                            that.maxNum = shareOrd.topPenNum;
+                            that.date = shareOrdUserBuy.starTime;
+                            that.status = shareOrd.type;
+                            that.orderStatus = shareOrdUserBuy.status;
+                            that.purchaseDate = shareOrdUserBuy.createDate;
+                            that.purchaseNum = shareOrdUserInfoList.length;
+                            that.pInfo = shareOrdUserInfoList;
+                            that.payPrice = shareOrdUserBuy.totalPrice;
+                            that.countNum = shareOrd.isBuyNum;
+                            that.rPrice = shareOrd.endDescPerPrice;
+                            that.rCountPrice = shareOrd.endDescTotalPrice;
+                            that.forecastPrice = res.data.decrPrice;
+                            that.orderUser = shareOrdUserBuyList;
+
+                        } else {
+                            alert(res.resultMessage);
+                        }
+                    },
+                    error(e) {
+                        console.log(e);
+                    }
+                })
+            }
+        },
     })
 </script>
 </body>

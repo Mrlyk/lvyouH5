@@ -60,11 +60,11 @@
         <!--目的地-->
         <div class="row destination">
             <div class="col-3">
-                <span>公司地址：</span>
+                <span>目的地：</span>
             </div>
             <div class="col-9">
-                <span v-for="item in cities">
-                    <input type="checkbox" v-model="destination" :value="item.value">{{item.city}}
+                <span v-for="(item,i) in cities">
+                    <input type="checkbox" v-model="destination" :value="item.NAME">{{item.NAME}}
                 </span>
             </div>
         </div>
@@ -75,7 +75,7 @@
                 <span>验证码：</span>
             </div>
             <div class="col-6">
-                <input v-model="companyAdd" placeholder="请输入短信验证码" style="width: 100%">
+                <input v-model="identifyCode" placeholder="请输入短信验证码" style="width: 100%">
             </div>
             <div class="col-3 identifyCode">
                 <button v-show="show" @click="getCode">发送验证码</button>
@@ -88,7 +88,7 @@
         </div>
         <!--按钮-->
         <div class="row rowBtn pt-4">
-            <button>提交</button>
+            <button @click="submitMsg">提交</button>
         </div>
     </div>
 </div>
@@ -102,10 +102,11 @@
         el: '#container',
         data() {
             return {
-                show: 'true',
+                show: true,
                 count: '',
-                timer:null,
+                timer: null,
 
+                check: true,
                 officeName: '',
                 officePhone: '',
                 companyName: '',
@@ -124,42 +125,141 @@
                     }, {
                         value: 'beijing4',
                         city: '北京4'
-                    }, {
-                        value: 'beijing5',
-                        city: '北京'
-                    }, {
-                        value: 'beijing6',
-                        city: '北京'
-                    }, {
-                        value: 'beijing7',
-                        city: '北京'
-                    }, {
-                        value: 'beijing8',
-                        city: '北京'
                     },
-                ]
+                ],
+                identifyCode: '',
             }
         },
+        mounted() {
+            this.getDestination();
+        },
         methods: {
-            getCode() {
-                let TIME_COUNT = 60;
-                if (!this.timer) {
-                    console.log('1');
-                    this.count = TIME_COUNT;
-                    this.show = false;
-                    this.timer = setInterval(() => {
-                        if (this.count > 0 && this.count <= TIME_COUNT) {
-                            this.count--;
-                        } else {
-                            this.show = true;
-                            clearInterval(this.timer);
-                            this.timer = null;
+            getData() {
+
+            },
+
+            //获得目的地
+            getDestination() {
+                let that = this;
+                $.ajax({
+                    url: 'http://114.55.95.164/tour/wechat/shareServer/getShareOfficeEndAddr',
+                    type: 'get',
+                    success(res) {
+                        if (res.resultCode == 100) {
+                            that.cities = res.data.endAddrList;
                         }
-                    }, 1000)
+                    },
+                    error(err) {
+                        console.log(err);
+                    }
+                })
+            },
+
+            //发送验证码
+            getCode() {
+                let that = this;
+                $.ajax({
+                    url: 'http://114.55.95.164/tour/wechat/storeMamager/sendCode',
+                    type: 'post',
+                    data: {
+                        'phone': this.officePhone,
+                    },
+                    success(res) {
+                        if (res.resultCode == 100) {
+                            let TIME_COUNT = 60;
+                            if (!that.timer) {
+                                that.count = TIME_COUNT;
+                                that.show = false;
+                                that.timer = setInterval(() => {
+                                    if (that.count > 0 && that.count <= TIME_COUNT) {
+                                        that.count--;
+                                    } else {
+                                        that.show = true;
+                                        clearInterval(that.timer);
+                                        that.timer = null;
+                                    }
+                                }, 1000)
+                            }
+                            ;
+                        }
+                        else {
+                            alert('请输入手机号码');
+                            console.log(res.resultMessage);
+                        }
+
+                    },
+                    error(err) {
+                        console.log(err);
+                    }
+                })
+
+            },
+
+
+            // 提交信息
+            submitMsg() {
+                //验证输入信息
+                let regPhone = /^1[1-9]\d{9}$/;
+                if (this.officeName == '') {
+                    alert('请输入用户名');
+                    return;
                 }
+                ;
+
+                if (this.officePhone == '') {
+                    alert('请输入手机号码');
+                    return;
+                }
+                else if (!regPhone.test(this.officePhone)) {
+                    alert(('请输入正确的手机号码格式'));
+                    return;
+                }
+                ;
+
+                if (this.companyName == '') {
+                    alert('请输入公司名称');
+                    return;
+                }
+                ;
+
+                if (this.companyAdd == '') {
+                    alert('请输入公司地址');
+                    return;
+                }
+                ;
+
+                if (this.destination == '') {
+                    alert('请至少选择一个目的地');
+                    return;
+                }
+                $.ajax({
+                    url: 'http://114.55.95.164/tour/wechat/shareServer/editShareOffice',
+                    type: 'post',
+                    data: {
+                        'contacts': this.officeName,
+                        'contactsPhone': this.officePhone,
+                        'companyName': this.companyName,
+                        'arg1': this.companyAdd,
+                        'Bourn': this.destination.join(','),
+                        'code': this.identifyCode,
+                    },
+                    success(res) {
+                        if (res.resultCode == 100){
+                            location.href='./admission.html';
+                        }else{
+
+                            alert(res.resultMessage);
+                        }
+                    },
+                    error(err){
+                        console.log(err);
+                    }
+
+                })
 
             }
-        }
+        },
+
     })
 </script>
 </body>
