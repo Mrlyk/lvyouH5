@@ -17,7 +17,7 @@
 <div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
-            <a href="./collage.html"> < </a>
+            <a href="./collageDetail.html"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>线路详情</span>
         </div>
         <!--分割块-->
@@ -61,7 +61,7 @@
 
         <!--图片-->
         <div class="row detailImg">
-            <img :src="'http://114.55.95.164/tour_upFile/'+detailImg" alt="图片">
+            <img :src="'http://114.55.95.164:80/tour_upFile/'+detailImg" alt="图片">
         </div>
         <!--分割块-->
         <div class="row"
@@ -79,7 +79,7 @@
                     <div class="modal-content" style="border-radius: 0">
                         <div class="modal-body" style="padding:0 1rem">
                             <div class="imgPrice">
-                                <span><img :src="'http://114.55.95.164/tour_upFile/'+detailImg" alt="图片"></span>
+                                <span><img :src="'http://114.55.95.164:80/tour_upFile/'+detailImg" alt="图片"></span>
                                 <span style="color: rgb(96, 96, 96);">价格：
                                     <span style="color: red">¥ {{price | toFixed(2)}} / 人</span>
                                 </span>
@@ -166,7 +166,6 @@
                     // return i.substr(0,10);
                     return i.split(' ')[0];
                 }
-
             }
         },
         methods: {
@@ -174,7 +173,7 @@
             //拼单跳转
             sub() {
                 if(this.date){
-                    let conf = confirm(`确认选择本日期吗${this.date.split(' ')[0]}`);
+                    let conf = confirm("确认选择本日期吗"+this.date.split(" ")[0]);
                     if(conf == true){
                         location.href='identityInfo.html?shareOrdId='+this.shareOrdId+'&starTime='+this.date+'&localPrice='+this.price;
                     }else {
@@ -203,7 +202,7 @@
             collageFn() {
                 let that = this;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/shareOrdInfo',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/shareOrdInfo',
                     type: 'get',
                     data: {
                         'id': that.id,
@@ -212,7 +211,7 @@
                         if (res.resultCode = 100) {
                             that.dates = res.data.dates;
                             that.date = res.data.dates[0].starTime;
-                            that.num = res.data.dates[0].num
+                            that.num = res.data.dates[0].num;
                             that.ordId = res.data.dates[0].id;
                             that.shareOrdId = res.data.dates[0].shareOrdId;
                         }
@@ -239,7 +238,7 @@
                 this.getId();
                 let that = this;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/shareOrdInfo',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/shareOrdInfo',
                     type: 'get',
                     data: {
                         'id': that.id,

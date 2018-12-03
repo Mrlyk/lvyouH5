@@ -17,7 +17,7 @@
 <div id="container">
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="./createOrder.html"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>订单详情</span>
         </div>
         <div class="row routerTitle">
@@ -25,45 +25,50 @@
         </div>
         <!--拼单-->
         <div class="row router">
-            <p>线路名称：{{tradeName}}</p>
-            <p>发班日期：{{newDate}}</p>
-            <p>门市价：¥{{mPrice}}</p>
-            <p>结算价：¥{{jPrice}}</p>
-            <p>递减人数：{{dNum}}</p>
-            <p>递减价格：¥{{dPrice}}</p>
-            <p>封顶人数：{{maxNum}}</p>
-            <p>佣金：¥{{charges}}</p>
-            <p>出发地：{{sPlace}}</p>
-            <p>目的地：{{ePlace}}</p>
-            <p>大交通：{{transition}}</p>
-            <p>供应商信息：{{supply}}，{{supplyPhone}}</p>
+            <p>线路名称：{{tourInfo.tourName}}</p>
+            <p>发班日期：{{tourInfo.datesStr}}</p>
+            <p>门市价：&emsp;<span style="color: red">¥{{tourInfo.fansPrice | toFixed}}</span></p>
+            <p>结算价：&emsp;<span style="color: red">¥{{tourInfo.storePrice | toFixed}}</span></p>
+            <p>递减人数：{{tourInfo.decrPenNum}}</p>
+            <p>递减价格：¥{{tourInfo.decrPrice | toFixed}}</p>
+            <p>封顶人数：{{tourInfo.topPenNum}}</p>
+            <p>佣金：&emsp;&emsp;¥{{tourInfo.brokerage | toFixed}}</p>
+            <p>出发地：&emsp;{{tourInfo.startAddr}}</p>
+            <p>目的地：&emsp;{{tourInfo.endAddr}}</p>
+            <p>大交通：&emsp;{{tourInfo.bigTraffic}}</p>
+            <p>供应商信息：{{tourInfo.storeInfo}}</p>
         </div>
         <div class="row rowImg">
             <span>行程介绍：</span>
-            <img :src="imgSrc" alt="行程介绍">
+            <img :src="'http://114.55.95.164:80/tour_upFile/'+tourInfo.journeyUrl" alt="行程介绍">
         </div>
 
         <div class="row routerTitle">
             <span>拼单信息</span>
         </div>
 
-        <div class="row collageInfo" v-for="agencyItem in agencyList">
-            <p>发班日期：{{agencyItem.sDate}}</p>
-            <p>已拼单总人数：{{agencyItem.countNum}}</p>
-            <p>已递减价格（元/人）：<span style="color: red">¥{{agencyItem.rPrice}}</span></p>
-            <p>递减总价：<span style="color: red">¥{{agencyItem.rCountPrice}}</span></p>
-            <p>预计递减价格（元/人）：<span style="color: red">¥{{agencyItem.forecastPrice}}</span></p>
+        <!--总信息-->
+        <div class="row generalInfo">
+            <p>已拼单总人数：{{tourInfo.isBuyNum}}</p>
+            <p>已递减价格（元/人）：<span style="color: red">¥{{tourInfo.endDescPerPrice}}</span></p>
+            <p>递减总价：<span style="color: red">¥{{tourInfo.endDescTotalPrice}}</span></p>
+            <p>预计递减价格（元/人）：<span style="color: red">¥{{decrPrice}}</span></p>
+        </div>
 
-            <div v-for="inItem in agencyItem.agency">
+        <!--不同日期信息-->
+        <div class="row collageInfo" v-for="item in agencyList">
+            <p>发班日期：{{item.starTime | filterTime}}</p>
+            <p>拼单人数：{{item.shareOrdUserBuyList | toNum}}</p>
+
+            <div v-for="initem in item.shareOrdUserBuyList">
                 <!--分割虚线-->
                 <div style="height: 1px;border-bottom: 1px dashed rgb(181,181,181);margin: 0.3rem 0;"></div>
-
-                <p>微信昵称：{{inItem.vxNickName}}</p>
-                <p>拼单人数：{{inItem.collageNum}}</p>
-                <p v-for="item in inItem.pInfo">姓名：{{item.cName}}；身份证：{{item.idCard}}</p>
-                <p>支付金额：¥{{inItem.payCount}}</p>
-                <p>预计递减总价：<span style="color: red">¥{{inItem.forecastCount}}</span></p>
+                <p>微信昵称：{{initem.createUser}}</p>
+                <p>拼单人数：{{initem.shareOrdUserInfoList | toLength}}</p>
+                <p v-for="pitem in initem.shareOrdUserInfoList">姓名：{{pitem.name}}；身份证：{{pitem.idCard}}</p>
+                <p>支付金额：¥{{initem.shareOrdUserInfoList.length * tourInfo.storePrice}}</p>
             </div>
+
             <!--分割块-->
             <div class="row rowSplit"></div>
         </div>
@@ -71,11 +76,8 @@
         <div class="row footer"
              style="height: 2rem;background-color: rgb(244,244,244);">
         </div>
-
     </div>
-
 </div>
-
 
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript" src="js/bootstrap.js"></script>
@@ -85,131 +87,188 @@
         el: '#container',
         data() {
             return {
-                tradeName: '宁波直飞北京纯玩五日游',
-                date: [
-                    '2018-10-01', '2018-10-03', '2018-10-05'
-                ],
-                mPrice: '4500.00',
-                jPrice: '4000.00',
-                price: '3000.00',
-                dNum: '10',
-                dPrice: '200.00',
-                maxNum: '20',
-                charges: '200.00',
-                sPlace: '宁波',
-                ePlace: '北京',
-                transition: '飞机',
-                supply: '宁波供应商',
-                supplyPhone: '13990213241',
-                imgSrc: 'img/selectData.png',
-
+                id: '',
+                decrPrice: '',
+                tourInfo: {
+                    // tradeName: '宁波直飞北京纯玩五日游',
+                    // date: [
+                    //     '2018-10-01', '2018-10-03', '2018-10-05'
+                    // ],
+                    // mPrice: '4500.00',
+                    // jPrice: '4000.00',
+                    // price: '3000.00',
+                    // dNum: '10',
+                    // dPrice: '200.00',
+                    // maxNum: '20',
+                    // charges: '200.00',
+                    // sPlace: '宁波',
+                    // ePlace: '北京',
+                    // transition: '飞机',
+                    // supply: '宁波供应商',
+                    // supplyPhone: '13990213241',
+                    // imgSrc: 'img/selectData.png',
+                },
+                pNum: 0,
+                payCount: '',
                 agencyList: [
-                    {
-                        sDate: '2018-10-01',
-                        countNum: '5',
-                        rPrice: '0',
-                        rCountPrice: '0',
-                        forecastPrice: '100',
-
-                        agency: [
-                            {
-                                vxNickName: '旅游分销商',
-                                collageNum: '3',
-                                pInfo: [
-                                    {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    }, {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    }, {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    },
-                                ],
-                                payCount: '12000',
-                                forecastCount: '600',
-
-                            }, {
-                                vxNickName: '旅游分销商2',
-                                collageNum: '3',
-                                pInfo: [
-                                    {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    }, {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    }, {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    },
-                                ],
-                                payCount: '12000',
-                                forecastCount: '600',
-
-                            },
-                        ]
-
-                    },{
-                        sDate: '2018-10-03',
-                        countNum: '5',
-                        rPrice: '0',
-                        rCountPrice: '0',
-                        forecastPrice: '100',
-
-                        agency: [
-                            {
-                                vxNickName: '旅游分销商',
-                                collageNum: '3',
-                                pInfo: [
-                                    {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    }, {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    }, {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    },
-                                ],
-                                payCount: '12000',
-                                forecastCount: '600',
-
-                            }, {
-                                vxNickName: '旅游分销商2',
-                                collageNum: '3',
-                                pInfo: [
-                                    {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    }, {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    }, {
-                                        cName: '张三',
-                                        idCard: '340321199911113212',
-                                    },
-                                ],
-                                payCount: '12000',
-                                forecastCount: '600',
-
-                            },
-                        ]
-
-                    },
-
+                    // {
+                    //     sDate: '2018-10-01',
+                    //     countNum: '5',
+                    //     rPrice: '0',
+                    //     rCountPrice: '0',
+                    //     forecastPrice: '100',
+                    //     forecastCount: '600',
+                    //
+                    //     agency: [
+                    //         {
+                    //             vxNickName: '旅游分销商',
+                    //             collageNum: '3',
+                    //             pInfo: [
+                    //                 {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 }, {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 }, {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 },
+                    //             ],
+                    //             payCount: '12000',
+                    //
+                    //
+                    //         }, {
+                    //             vxNickName: '旅游分销商2',
+                    //             collageNum: '3',
+                    //             pInfo: [
+                    //                 {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 }, {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 }, {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 },
+                    //             ],
+                    //             payCount: '12000',
+                    //
+                    //         },
+                    //     ]
+                    //
+                    // }, {
+                    //     sDate: '2018-10-03',
+                    //     countNum: '5',
+                    //     rPrice: '0',
+                    //     rCountPrice: '0',
+                    //     forecastPrice: '100',
+                    //     forecastCount: '600',
+                    //
+                    //     agency: [
+                    //         {
+                    //             vxNickName: '旅游分销商',
+                    //             collageNum: '3',
+                    //             pInfo: [
+                    //                 {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 }, {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 }, {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 },
+                    //             ],
+                    //             payCount: '12000',
+                    //         }, {
+                    //             vxNickName: '旅游分销商2',
+                    //             collageNum: '3',
+                    //             pInfo: [
+                    //                 {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 }, {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 }, {
+                    //                     cName: '张三',
+                    //                     idCard: '340321199911113212',
+                    //                 },
+                    //             ],
+                    //             payCount: '12000',
+                    //         },
+                    //     ]
+                    //
+                    // },
                 ],
+            }
+        },
+        mounted() {
+            //拿到id
+            this.getId();
+            this.getInfo();
+        },
+        filters: {
+            toFixed(i) {
+                if (i) {
+                    return i.toFixed(2);
+                }
+            },
+            //    显示日期格式
+            filterTime(i) {
+                if (i) {
+                    return i.split(' ')[0];
+                }
+            },
+            //显示单个日期总人数
+            toNum(i){
+                return i.reduce((prev,next)=>{
+                    return prev + next.shareOrdUserInfoList.length;
+                },0)
+            },
 
+            //    显示拼单人数
+            toLength(i) {
+                if (i) {
+                    return i.length;
+                }
             }
         },
-        computed: {
-            newDate() {
-                return this.date.join('、');
-            }
-        },
-        methods: {}
+        methods: {
+            getId() {
+                let reg = new RegExp("(^|&)" + 'id' + "=([^&]*)(&|$)", "i");
+                let r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    this.id = decodeURI(r[2]);
+                }
+                return null
+            },
+
+            getInfo() {
+                let that = this;
+                $.ajax({
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/myCrtShareOrdInfo',
+                    type: 'get',
+                    data: {
+                        'id': this.id,
+                    },
+                    success(res) {
+                        if (res.resultCode == 100) {
+                            console.log(res);
+                            that.tourInfo = res.data.shareOrd;
+                            that.agencyList = res.data.shareOrdDateList;
+                            that.decrPrice = res.data.decrPrice;
+                        }
+                    },
+                    error(e) {
+                        console.log(e);
+                    }
+                })
+            },
+        }
     })
 </script>
 </body>

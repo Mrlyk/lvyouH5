@@ -17,7 +17,7 @@
 <div id="container">
     <div class="container-fluid">
         <div class="row header">
-            <a href="javascript:history.go(-1)"> < </a>
+            <a href="javascript:history.go(-1)"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>立即拼单</span>
         </div>
 
@@ -110,7 +110,7 @@
                         }
                     });
                     this.idCard.forEach(item => {
-                        let reg = /(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{4}$)/;
+                        let reg = /(^[1-9]\d{7}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}$)|(^[1-9]\d{5}[1-9]\d{3}((0\d)|(1[0-2]))(([0|1|2]\d)|3[0-1])\d{3}[\d,x,X]$)/;
                         if (item == '') {
                             alert('请输入所有人的身份证号');
                             flag = false;
@@ -124,7 +124,7 @@
 
                     if (flag) {
                         $.ajax({
-                            url: 'http://114.55.95.164/tour/wechat/shareServer/saveShareOrd',
+                            url: 'http://192.168.2.113/tour/wechat/shareServer/saveShareOrd',
                             type: 'post',
                             data: {
                                 'shareOrdId': that.shareOrdId,

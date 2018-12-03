@@ -20,7 +20,7 @@
 <div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="#"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>创建拼单</span>
         </div>
         <div class="row createCollage">
@@ -182,98 +182,173 @@
                 uploadImg: '',
             }
         },
+        mounted(){
+            this.postData();
+            this.postImg();
+        },
         methods: {
+            //用promise封装两个个ajax，一个传数据一个传图片
+            postData(url,param){
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        async: true,
+                        data: param,
+                        success(res) {
+                            resolve(res);
+                        },
+                        error(e) {
+                            reject(e);
+                        }
+                    })
+                })
+            },
+            postImg(url,param){
+                return new Promise((resolve, reject) => {
+                    $.ajax({
+                        url: url,
+                        type: 'post',
+                        async: true,
+                        data: param,
+                        processData:false,
+                        contentType:false,
+                        success(res) {
+                            resolve(res);
+                        },
+                        error(e) {
+                            reject(e);
+                        }
+                    })
+                })
+            },
+
             sub() {
                 let that = this;
-                let flag = false;
                 // let dates = this.timeValue.map(item => {
                 //     let obj = {};
                 //     obj['starTime'] = item;
                 //     return obj;
                 // });
                 // console.log(dates[0]);
+                if (this.title && this.timeValue && this.mPrice && this.jPrice && this.dNum && this.dPrice && this.fNum
+                    && this.charges && this.sPlace && this.ePlace && this.transition && this.uploadImg){
+                    let files = this.$refs.uploadImg.files[0];
+                    let collageDate = {
+                        'tourName': that.title,
+                        'datesStr': that.timeValue.join(','),
+                        'fansPrice': that.mPrice,
+                        'storePrice': that.jPrice,
+                        'decrPenNum': that.dNum,
+                        'decrPrice': that.dPrice,
+                        'topPenNum': that.fNum,
+                        'brokerage': that.charges,
+                        'startAddr': that.sPlace,
+                        'endAddr': that.ePlace,
+                        'bigTraffic': that.transition,
+                    }
 
-                //传图片
-                let files = that.$refs.uploadImg.files[0];
-                if (files) {
                     let data = new FormData();
                     data.append('file', files);
-                    console.log(data);
-                    $.ajax({
-                        url: 'http://114.55.95.164/tour/system/image/upload',
-                        type: 'post',
-                        async: false,
-                        processData: false, //取消预处理对象
-                        contentType: false,   // 不设置内容类型
-                        data: data, //FormData数据
-                        success(res) {
-                            if (res.resultCode == 100) {
-                                that.imgUrl = res.data.imgUrl;
-                                flag = true;
-                            } else {
-                                flag = false;
-                                alert(res.resultMessage);
-                            }
+                    this.postImg('http://192.168.2.113/tour/system/image/upload', data).then(
+                        res => {
+                            collageDate['journeyUrl'] = res.data.imgUrl;
+                            return this.postData('http://192.168.2.113/tour/wechat/shareServer/add', collageDate)
                         },
-                        error(e) {
-                            console.log(e);
+                        err => {
+                            console.log('调用失败1');
                         }
-                    })
-                }else {
-                    alert('请上传行程介绍图片');
-                    return;
-                };
-
-                //判断是否所有信息都填写了
-                if (this.title && this.timeValue && this.mPrice && this.jPrice && this.dNum && this.dPrice && this.fNum
-                    && this.charges && this.sPlace && this.ePlace && this.transition && this.uploadImg && flag) {
-                    $.ajax({
-                        url: 'http://114.55.95.164/tour/wechat/shareServer/add',
-                        type: 'post',
-                        async: false,
-
-                        data: {
-                            'tourName': that.title,
-                            'datesStr': that.timeValue.join(','),
-                            'fansPrice': that.mPrice,
-                            'storePrice': that.jPrice,
-                            'decrPenNum': that.dNum,
-                            'decrPrice': that.dPrice,
-                            'topPenNum': that.fNum,
-                            'brokerage': that.charges,
-                            'startAddr': that.sPlace,
-                            'endAddr': that.ePlace,
-                            'bigTraffic': that.transition,
-                            'journeyUrl': that.imgUrl,
+                    ).then(
+                        res => {
+                            $('#subSuccess').modal('toggle');
                         },
-                        success(res) {
-                            if (res.resultCode == 100) {
-                                flag = true;
-                            } else {
-                                console.log(res.resultMessage)
-                                flag = false;
-                            }
-                        },
-                        error(e) {
-                            console.log(e);
+                        err => {
+                            console.log('调用失败2');
                         }
-                    });
-                }
-                else {
-                    flag = false;
-                    alert('请将所有信息填写完整');
+                    );
+
+                }else{
+                    alert('请将所有信息填写完整')
                 }
 
-                if (flag) {
-                    $('#subSuccess').modal('toggle');
-                }
-                ;
+
+
+                //传图片
+                // let files = that.$refs.uploadImg.files[0];
+                // if (files) {
+                //     let data = new FormData();
+                //     data.append('file', files);
+                //     console.log(data);
+                //     $.ajax({
+                //         url: 'http://192.168.2.113/tour/system/image/upload',
+                //         type: 'post',
+                //         async: false,
+                //         processData: false, //取消预处理对象
+                //         contentType: false,   // 不设置内容类型
+                //         data: data, //FormData数据
+                //         success(res) {
+                //             if (res.resultCode == 100) {
+                //                 that.imgUrl = res.data.imgUrl;
+                //                 flag = true;
+                //             } else {
+                //                 flag = false;
+                //                 alert(res.resultMessage);
+                //             }
+                //         },
+                //         error(e) {
+                //             console.log(e);
+                //         }
+                //     })
+                // }else {
+                //     alert('请上传行程介绍图片');
+                //     return;
+                // };
+                //
+                // //判断是否所有信息都填写了
+                // if (this.title && this.timeValue && this.mPrice && this.jPrice && this.dNum && this.dPrice && this.fNum
+                //     && this.charges && this.sPlace && this.ePlace && this.transition && this.uploadImg && flag) {
+                //     $.ajax({
+                //         url: 'http://192.168.2.113/tour/wechat/shareServer/add',
+                //         type: 'post',
+                //         async: false,
+                //
+                //         data: {
+                //             'tourName': that.title,
+                //             'datesStr': that.timeValue.join(','),
+                //             'fansPrice': that.mPrice,
+                //             'storePrice': that.jPrice,
+                //             'decrPenNum': that.dNum,
+                //             'decrPrice': that.dPrice,
+                //             'topPenNum': that.fNum,
+                //             'brokerage': that.charges,
+                //             'startAddr': that.sPlace,
+                //             'endAddr': that.ePlace,
+                //             'bigTraffic': that.transition,
+                //             'journeyUrl': that.imgUrl,
+                //         },
+                //         success(res) {
+                //             if (res.resultCode == 100) {
+                //                 flag = true;
+                //             } else {
+                //                 console.log(res.resultMessage)
+                //                 flag = false;
+                //             }
+                //         },
+                //         error(e) {
+                //             console.log(e);
+                //         }
+                //     });
+                // }
+                // else {
+                //     flag = false;
+                //     alert('请将所有信息填写完整');
+                // }
+                //
+                // if (flag) {
+                //     $('#subSuccess').modal('toggle');
+                // };
             },
 
-            //    上传图片
-            upImg(e) {
-
-            },
 
             //删除图片
             deleteImg() {

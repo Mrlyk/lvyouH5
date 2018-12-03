@@ -17,7 +17,7 @@
 <div id="container">
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="./distributorCollage.html"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>线路详情</span>
         </div>
         <!--分割块-->
@@ -26,19 +26,19 @@
         </div>
 
         <div class="row detail">
-            <p style="color: black;">线路名称：[拼单] {{title}}</p>
-            <p>发班日期：{{newStartTime}}</p>
-            <p>门市价：<span style="color: red">¥{{mPrice}}</span></p>
-            <p>结算价：<span style="color: red">¥{{jPrice}}</span></p>
-            <p>递减人数：{{dNum}}</p>
-            <p>递减价格：¥{{dPrice}}</p>
-            <p>封顶人数：{{maxNum}}</p>
-            <p>佣金：¥{{charges}}</p>
+            <p style="color: black;">线路名称：[拼单] {{collageInfo.tourName}}</p>
+            <p>发班日期：{{collageInfo.datesStr}}</p>
+            <p>门市价：&emsp;<span style="color: red">¥{{collageInfo.fansPrice |toFixed(2)}}</span></p>
+            <p>结算价：&emsp;<span style="color: red">¥{{collageInfo.storePrice |toFixed(2)}}</span></p>
+            <p>递减人数：{{collageInfo.decrPenNum}}</p>
+            <p>递减价格：¥{{collageInfo.decrPrice}}</p>
+            <p>封顶人数：{{collageInfo.totalNum}}</p>
+            <p>佣金：&emsp;&emsp;¥{{collageInfo.brokerage}}</p>
             <p>余位数量：{{leftNum}}</p>
-            <p>出发地：{{sPlace}}</p>
-            <p>目的地：{{ePlace}}</p>
-            <p>大交通：{{transition}}</p>
-            <p>供应商信息：{{supply}}，{{supplyPhone}}</p>
+            <p>出发地：&emsp;{{collageInfo.startAddr}}</p>
+            <p>目的地：&emsp;{{collageInfo.endAddr}}</p>
+            <p>大交通：&emsp;{{collageInfo.bigTraffic}}</p>
+            <p>供应商信息：{{collageInfo.storeInfo}}</p>
         </div>
 
         <!--分割块-->
@@ -57,7 +57,7 @@
 
         <!--图片-->
         <div class="row detailImg">
-            <img :src="detailImg" alt="图片">
+            <img :src="'http://114.55.95.164:80/tour_upFile/'+collageInfo.journeyUrl" alt="图片">
         </div>
         <!--分割块-->
         <div class="row"
@@ -67,15 +67,42 @@
         <div class="row collageBtn">
             <button @click="collageFn">立即拼单</button>
         </div>
-        <!--超出人数提示-->
-        <div class="modal fade" id="tipsModal">
-            <div class="modal-dialog" style="width: 55%">
-                <div class="modal-content">
-                    <div class="modal-body" style="padding: 2rem;">
-                        <div style="font-size: 1.2rem;">拼单人数超出当前余位数，拼单失败</div>
-                    </div>
-                </div>
+        <!--选择日期弹出框-->
+        <div class="row">
+            <div class="modal fade" id="datePicker">
+                <div class="modal-dialog">
+                    <div class="modal-content" style="border-radius: 0">
+                        <div class="modal-body" style="padding:0 1rem">
+                            <div class="imgPrice">
+                                <span><img :src="'http://114.55.95.164:80/tour_upFile/'+collageInfo.journeyUrl" alt="图片"></span>
+                                <span style="color: rgb(96, 96, 96);">价格：
+                                    <span style="color: red">¥ {{collageInfo.storePrice | toFixed(2)}} / 人</span>
+                                </span>
+                                <span data-dismiss="modal"><img src="img/exit.png" alt="关闭"></span>
+                            </div>
+                            <h4 class="datePicker">选择日期</h4>
+                            <div class="datePickers">
 
+                                <div v-for="item in collageInfo.dates">
+                                    <label class="datePickerLabel"
+                                           :class="{active:ordId == item.id}"
+                                           @click="setNum(item.num,item.shareOrdId);setClass(item.id)">{{item.starTime |
+                                        dateP}}
+                                        <input style="display: none" type="radio" v-model="date" :value="item.starTime">
+                                    </label>
+                                </div>
+                            </div>
+                            <div style="padding: 1.2rem 0.5rem;color: rgb(121,121,121)">
+                                余位数量：{{num}}
+                            </div>
+
+                        </div>
+                        <div class="modal-footer" style="padding: 0">
+                            <button class="subBtn" @click="sub">立即拼单</button>
+                        </div>
+                    </div>
+
+                </div>
             </div>
         </div>
     </div>
@@ -86,42 +113,155 @@
 <script type="text/javascript" src="js/vue.js"></script>
 <script>
     let vm = new Vue({
-        el:'#container',
-        data(){
-            return{
-                collage: true,
-                title: '宁波直飞北京纯玩五日游',
-                startTime: [
-                    '2018-10-01','2018-10-03','2018-10-05'
-                ],
-                mPrice:'4500.00',
-                jPrice:'4000.00',
-                dNum: '10',
-                dPrice: '500.00',
-                maxNum: '20',
-                destination: '北京',
-                price: '3000.00',
-                charges: '200.00',
-                leftNum:'8',
-                sPlace: '宁波',
-                ePlace: '北京',
-                transition: '飞机',
-                supply: '宁波供应商',
-                supplyPhone: '13990213241',
+        el: '#container',
+        data() {
+            return {
+                num:'',
+                ordId:'',
+                shareOrdId:'',
+                date:'',
+                price:'',
+                collageInfo: {
+                    totalNum:0,
+                    isBuyNum:0,
+                    // id: '',
+                    // isShare: '',
+                    // collage: true,
+                    // title: '',
+                    // destination: '',
+                    // startTime: '',
+                    // price: '',
+                    // dNum: '',
+                    // dPrice: '',
+                    // maxNum: '',
+                    // type: '',
+                    // detailImg: '',
+                    //
+                    // num: '',
+                    // date: '',
+                    // dates: [],
+                    // ordId: '',
+                    // shareOrdId: '',
+                }
 
-
-                type:'国内游',
-                detailImg:'img/collageDetail.png'
             }
+        },
+        mounted() {
+            this.getCollageDetail();
         },
         computed:{
-            newStartTime(){
-                return this.startTime.join('、');
+            leftNum(){
+                return this.collageInfo.totalNum - this.collageInfo.isBuyNum;
+            },
+
+        },
+        filters: {
+            toFixed(i, param) {
+                if (i) {
+                    return i.toFixed(param);
+                }
+            },
+            //消除年月日后的时间
+            dateP(i) {
+                if (i) {
+                    // return i.substr(0,10);
+                    return i.split(' ')[0];
+                }
             }
         },
-        methods:{
-            collageFn(){
-                $('#tipsModal').modal('toggle');
+        methods: {
+
+
+            //拼单跳转
+            sub() {
+                return new Promise(((resolve, reject) => {
+                    //判断是否是商户
+                    $.ajax({
+                        url:'http://192.168.2.113/tour/wechat/shareServer/isStore',
+                        type:'get',
+                        success(res){
+                            resolve(res);
+                        },
+                        error(e){
+                            reject(e);
+                        }
+                    })
+                })).then(
+                    res=>{
+                        if(res.data){
+                            this.price = this.collageInfo.storePrice;
+                        }else{
+                            this.price = this.collageInfo.fansPrice;
+                        }
+                        if (this.date ) {
+                            let conf = confirm(`确认选择本日期吗${this.date.split(' ')[0]}`);
+                            if (conf == true) {
+                                location.href = 'disIdentityInfo.html?shareOrdId=' + this.shareOrdId + '&starTime=' + this.date + '&localPrice=' + this.price;
+                            } else {
+                                return;
+                            }
+                        } else {
+                            alert('请选择一个日期');
+                            return;
+                        }
+                    },
+                    err=>{
+                        console.log('调用错误');
+                    }
+                )
+
+            },
+
+            //选中变色
+            setClass(id) {
+                this.ordId = id;
+
+            },
+            //返回余量并给当前路线id赋值
+            setNum(num, sId) {
+                this.num = num;
+                this.shareOrdId = sId;
+            },
+
+            //弹出框
+            collageFn() {
+                $('#datePicker').modal('toggle');
+            },
+            //拿到id
+            getId() {
+                let reg = new RegExp("(^|&)" + 'id' + "=([^&]*)(&|$)", "i");
+                let r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    this.id = decodeURI(r[2]);
+                }
+                return null
+            },
+
+            //获得订单信息
+            getCollageDetail() {
+                this.getId();
+                let that = this;
+                $.ajax({
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/shareOrdInfo',
+                    type: 'get',
+                    data: {
+                        'id': that.id,
+                    },
+                    success(res) {
+                        if (res.resultCode = 100) {
+                            that.collageInfo = res.data;
+                            that.collageInfo.totalNum = res.data.topPenNum;
+                            that.collageInfo.isBuyNum = res.data.isBuyNum;
+                            that.ordId = res.data.dates[0].id;
+                            that.shareOrdId = res.data.dates[0].shareOrdId;
+                            that.date = res.data.dates[0].starTime;
+                            that.num = res.data.dates[0].num;
+                        }
+                    },
+                    error(err) {
+                        console.log(err)
+                    }
+                })
             }
         }
     })

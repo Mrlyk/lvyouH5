@@ -14,13 +14,16 @@
     <link rel="stylesheet" type="text/css" href="css/officeSettleIn.css">
 </head>
 <body>
-<div id="container">
+<div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="#"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>办事处入驻</span>
         </div>
+        <!--分割槽-->
+        <div class="row slide"></div>
 
+        <!--主要信息-->
         <div class="row rowMsg">
             <div class="col-3">
                 <span>姓名：</span>
@@ -71,7 +74,7 @@
 
         <!--验证码-->
         <div class="row rowMsgCode row-eq-height">
-            <div class="col-3" style="padding: 0.7rem 0 0.7rem 1rem">
+            <div class="col-3" style="padding: 0.7rem 0 0.7rem 1.5rem">
                 <span>验证码：</span>
             </div>
             <div class="col-6">
@@ -142,7 +145,7 @@
             getDestination() {
                 let that = this;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/getShareOfficeEndAddr',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/getShareOfficeEndAddr',
                     type: 'get',
                     success(res) {
                         if (res.resultCode == 100) {
@@ -159,7 +162,7 @@
             getCode() {
                 let that = this;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/storeMamager/sendCode',
+                    url: 'http://192.168.2.113/tour/wechat/storeMamager/sendCode',
                     type: 'post',
                     data: {
                         'phone': this.officePhone,
@@ -233,7 +236,7 @@
                     return;
                 }
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/editShareOffice',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/editShareOffice',
                     type: 'post',
                     data: {
                         'contacts': this.officeName,

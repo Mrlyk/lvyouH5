@@ -32,7 +32,7 @@ html,body{
     overflow: hidden;
     background-color: rgb(244,244,244);
     justify-content: space-between;
-    border-top: 1px solid rgb(121,121,121);
+    border-top: 1px solid rgb(221,221,221);
 }
 
 .createOrder{
@@ -40,7 +40,7 @@ html,body{
     flex-direction: column;
     background-color: rgb(244,244,244);
     padding-bottom: 0.2rem;
-    border-bottom: 1px solid rgb(121,121,121);
+    border-bottom: 1px solid rgb(231,231,231);
 }
 
 .createOrder>p{
@@ -55,16 +55,17 @@ html,body{
     align-items: center;
     height: 4rem;
     justify-content: space-between;
-    border-bottom: 1px solid rgb(121,121,121);
+    border-bottom: 1px solid rgb(221,221,221);
 }
 
 .orderFooter>span{
-    font-size: 1rem;
+    font-size: 0.9rem;
     color:rgb(181,181,181);
 }
 
 .orderBtn>button{
     height: 2.4rem;
+    font-size: 1rem;
     background-color: white;
     border: 1px solid rgb(66,66,66);
     border-radius: 6px;

@@ -17,7 +17,7 @@
 <div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
-            <a href="javascript:history.go(-1)"> < </a>
+            <a href="javascript:history.go(-1)"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>订单详情</span>
         </div>
         <div class="row routerTitle">
@@ -26,20 +26,20 @@
         <!--拼单-->
         <div class="row router" v-if="collage==1">
             <p>线路名称：[拼单] {{tradeName}}</p>
-            <p>目的地：{{destination}}</p>
-            <p>地接价格：¥{{price | toFixed}}</p>
+            <p>目的地：&emsp;{{destination}}</p>
+            <p>地接价格：<span style="color: red">¥{{price | toFixed}}</span></p>
             <p>是否拼单：是</p>
             <p>递减人数：{{dNum}}</p>
-            <p>递减价格：¥{{dPrice | toFixed}}</p>
+            <p>递减价格：<span style="color: red">¥{{dPrice | toFixed}}</span></p>
             <p>封顶人数：{{maxNum}}</p>
             <p>发班日期：{{date |toSplit}}</p>
-            <p>性质：{{status}}</p>
+            <p>性质：&emsp;&emsp;{{status}}</p>
             <p v-if="orderStatus==1">订单状态：待支付</p>
             <p v-else>订单状态：已支付</p>
             <p>订单创建日期：{{purchaseDate}}</p>
             <p>购买人数：{{purchaseNum}}</p>
             <p v-for="item in pInfo">姓名：{{item.name}}；身份证：{{item.idCard}}</p>
-            <p>支付金额：¥{{payPrice | toFixed}}</p>
+            <p>支付金额：<span style="color: red">¥{{payPrice | toFixed}}</span></p>
         </div>
 
         <!--不拼单-->
@@ -147,7 +147,7 @@
                 this.getId();
                 let that = this;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/myBuyShareOrdInfo',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/myBuyShareOrdInfo',
                     type: 'get',
                     data: {
                         'id': that.id,

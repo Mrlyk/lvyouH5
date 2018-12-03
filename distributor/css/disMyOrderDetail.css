@@ -22,6 +22,12 @@
     padding-left: 1rem;
     padding-bottom: 1rem;
 }
+
+.rowImg>img{
+    margin-top: 0.3rem;
+    width: 50%;
+    height: 50%;
+}
 .rowDown{
     padding-left: 1rem;
     flex-direction: column;

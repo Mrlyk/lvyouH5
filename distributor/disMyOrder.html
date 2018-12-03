@@ -17,38 +17,38 @@
 <div id="container">
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="#"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>我的订单</span>
         </div>
 
         <!--订单列表-->
         <div v-for="item in myOrder">
             <div class="row orderId">
-                <span>订单编号：{{item.orderId}}</span>
-                <span class="" v-if="item.orderStatus=='待支付'" style="color:red;">{{item.orderStatus}}</span>
-                <span v-else>{{item.orderStatus}}</span>
+                <span>订单编号：{{item.id}}</span>
+                <span class="" v-if="item.status==1" style="color:red;">待支付</span>
+                <span v-else>已支付</span>
             </div>
             <div class="row orderMsg">
-                <p style="font-size: 1.2rem;color: black">{{item.orderName}}</p>
-                <p>购买日期：{{item.orderDate}}</p>
-                <p>购买人数：{{item.orderNum}}</p>
-                <p>门市价：<span style="color: red">¥ {{item.mPrice}}</span></p>
-                <p>结算价：<span style="color: red">¥ {{item.jPrice}}</span></p>
+                <p style="font-size: 1.2rem;color: black">{{item.tourName}}</p>
+                <p>购买日期：{{item.starTime |dateP}}</p>
+                <p>购买人数：{{item.buyNum}}</p>
+                <p>门市价：<span style="color: red">¥ {{item.fansPrice}}</span></p>
+                <p>结算价：<span style="color: red">¥ {{item.storePrice}}</span></p>
             </div>
 
             <div class="orderTime">
-                <span style="color: rgb(161,161,161)">订单时间：{{item.orderTime}}</span>
+                <span style="color: rgb(161,161,161)">订单时间：{{item.createDate}}</span>
                 <span style="color: red">总价：¥ {{item.totalPrice}}</span>
             </div>
 
             <div class="row pay">
-                <button v-if="item.orderStatus=='待支付'" class="payBtn" @click="pay">支付</button>
-                <button @click="toDetail" class="toDetail">查看详情</button>
+                <button v-if="item.status==1" class="payBtn" @click="pay">支付</button>
+                <button @click="toDetail(item.id)" class="toDetail">查看详情</button>
             </div>
 
             <!--分割行-->
             <div class="row"
-                 style="height: 1rem;background-color: rgb(244,244,244);border-bottom: 1px solid rgb(121, 121, 121);">
+                 style="height: 1rem;background-color: rgb(244,244,244);border-bottom: 1px solid rgb(221, 221, 221);">
             </div>
         </div>
     </div>
@@ -99,14 +99,46 @@
                 ]
             }
         },
+
+        mounted(){
+          this.getOrder();
+        },
+        filters:{
+            dateP(i){
+                if(i){
+                    return i.split(' ')[0];
+                }
+            }
+        },
         methods:{
             pay(){
 
             },
 
-            toDetail(){
+            toDetail(id) {
+                location.href='./disMyorderDetail.html?id='+id;
+            },
 
-            }
+            getOrder() {
+                let that = this;
+                $.ajax({
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/myStoreShareOrdList',
+                    type: 'get',
+                    data: {
+                        'currentPage': that.currentPage,
+                        'showCount': that.pageSize,
+                    },
+                    success(res) {
+                        if (res.resultCode == 100) {
+                            that.myOrder = res.data;
+                        }
+                    },
+                    error(e) {
+                        console.log(e);
+                    }
+                })
+
+            },
         }
     })
 </script>

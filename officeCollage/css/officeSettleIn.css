@@ -9,9 +9,10 @@ html,body{
 }
 
 .rowMsg{
-    padding: 0.7rem 0 0.7rem 1rem;
+    padding: 0.8rem 0 0.8rem 0;
+    margin-left: 0.5rem;
     align-items: center;
-    border-bottom: 1px solid rgb(121,121,121);
+    border-bottom: 1px solid rgb(200,200,200);
 }
 
 .rowMsg>.col-3{
@@ -19,8 +20,9 @@ html,body{
 }
 
 .destination{
-    padding: 0.7rem 0 0.7rem 1rem;
-    border-bottom: 1px solid rgb(121,121,121);
+    padding: 0.7rem 0 0.7rem 0;
+    margin-left: 0.5rem;
+    border-bottom: 1px solid rgb(200,200,200);
 }
 
 /*目的地*/
@@ -31,18 +33,25 @@ html,body{
 .destination>.col-9{
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
 }
 
 .destination>.col-9>span{
+    line-height: 100%;
     width: 25%;
-    margin-bottom: 0.5rem;
+}
+
+.destination>.col-9>span>input{
+    border-radius: 5%;
+    border: 2px solid rgb(210,210,210);
+    background-color: white;
 }
 
 /*验证码*/
 .rowMsgCode{
     align-items: center;
-    border-bottom: 1px solid rgb(121,121,121);
+    border-bottom: 1px solid rgb(200,200,200);
 }
 
 .rowMsgCode>.col-6{
@@ -53,13 +62,14 @@ html,body{
 .identifyCode{
     display: flex;
     align-items: center;
-    padding: 0.6rem 0;
+    padding: 0.7rem 0;
     border-left: 1px solid rgb(121,121,121);
 }
 .identifyCode>button{
     height: 100%;
     width: 100%;
     padding: 0;
+    background-color: white;
 }
 
 /*提示*/

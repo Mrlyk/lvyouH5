@@ -17,7 +17,7 @@
 <div id="container">
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="./disMyOrder.html"> < </a>
             <span>订单详情</span>
         </div>
         <div class="row routerTitle">
@@ -25,30 +25,31 @@
         </div>
         <!--拼单-->
         <div class="row router">
-            <p style="color: black">线路名称：{{tradeName}}</p>
-            <p>发班日期：{{newDate}}</p>
-            <p>门市价：<span style="color: red;">¥{{mPrice}}</span></p>
-            <p>结算价：<span style="color: red;">¥{{jPrice}}</span></p>
-            <p>递减人数：{{dNum}}</p>
-            <p>递减价格：¥{{dPrice}}</p>
-            <p>封顶人数：{{maxNum}}</p>
-            <p>佣金：¥{{charges}}</p>
-            <p>出发地：{{sPlace}}</p>
-            <p>目的地：{{ePlace}}</p>
-            <p>大交通：{{transition}}</p>
-            <p>供应商信息：{{supply}}，{{supplyPhone}}</p>
+            <p style="color: black">线路名称：{{shareOrdUserBuy.tourName}}</p>
+            <p>发班日期：{{shareOrdUserBuy.starTime | dateP}}</p>
+            <p>门市价：<span style="color: red;">¥{{shareOrd.fansPrice | toFixed}}</span></p>
+            <p>结算价：<span style="color: red;">¥{{shareOrd.storePrice | toFixed}}</span></p>
+            <p>递减人数：{{shareOrd.decrPenNum}}</p>
+            <p>递减价格：¥{{shareOrd.decrPrice}}</p>
+            <p>封顶人数：{{shareOrd.topPenNum}}</p>
+            <p>佣金：¥{{shareOrd.brokerage}}</p>
+            <p>出发地：{{shareOrd.startAddr}}</p>
+            <p>目的地：{{shareOrd.endAddr}}</p>
+            <p>大交通：{{shareOrd.bigTraffic}}</p>
+            <p>供应商信息：{{shareOrd.storeInfo}}</p>
         </div>
         <div class="row rowImg">
             <span style="color: rgb(101,101,101)">行程介绍：</span>
-            <img :src="imgSrc" alt="行程介绍">
+            <img :src="'http://114.55.95.164:80/tour_upFile'+shareOrd.journeyUrl" alt="行程介绍">
         </div>
 
         <div class="row rowDown">
-            <p>订单状态：{{orderStatus}}</p>
-            <p>购买日期：{{purchaseDate}}</p>
-            <p>购买人数：{{purchaseNum}}</p>
-            <p v-for="item in pInfo">姓名：{{item.cName}}；身份证：{{item.idCard}}</p>
-            <p>支付金额：¥{{payPrice}}</p>
+            <p v-if="shareOrd.status==2">已支付</p>
+            <p v-else>待支付</p>
+            <p>订单创建日期：{{shareOrdUserBuy.createDate}}</p>
+            <p>购买人数：{{shareOrdUserBuyList.totalBuyNum}}</p>
+            <p v-for="item in shareOrdUserInfoList">姓名：{{item.name}}；身份证：{{item.idCard}}</p>
+            <p>支付金额：¥{{shareOrdUserBuyList.totalPrice}}</p>
         </div>
 
         <div class="row routerTitle">
@@ -57,18 +58,18 @@
 
 
         <div class="row collageInfo">
-            <p>已拼单总人数：{{countNum}}</p>
-            <p>已递减价格（元/人）：<span style="color: red">¥{{rPrice}}</span></p>
-            <p>递减总价：<span style="color: red">¥{{rCountPrice}}</span></p>
-            <p>预计递减价格（元/人）：<span style="color: red">¥{{forecastPrice}}</span></p>
+            <p>已拼单总人数：{{shareOrd.isBuyNum}}</p>
+            <p>已递减价格（元/人）：<span style="color: red">¥{{shareOrd.endDescPerPrice}}</span></p>
+            <p>递减总价：<span style="color: red">¥{{shareOrd.endDescTotalPrice}}</span></p>
+            <p>预计递减价格（元/人）：<span style="color: red">¥{{decrPrice}}</span></p>
 
 
             <!--分割虚线-->
             <div style="height: 1px;border-bottom: 1px dashed rgb(181,181,181);margin: 0.3rem 0;"></div>
             <p>拼单信息：</p>
-            <div v-for="item in agency">
-                <p>微信昵称：{{item.vxNickName}}</p>
-                <p>拼单人数：{{item.collageNum}}</p>
+            <div v-for="item in shareOrdUserBuyList">
+                <p>微信昵称：{{item.contacts}}</p>
+                <p>拼单人数：{{item.totalBuyNum}}</p>
             </div>
             <!--分割块-->
             <div class="row rowSplit"></div>
@@ -91,65 +92,114 @@
         el: '#container',
         data() {
             return {
-                tradeName: '宁波直飞北京纯玩五日游',
-                date: [
-                    '2018-10-01', '2018-10-03', '2018-10-05'
-                ],
-                mPrice: '4500.00',
-                jPrice: '4000.00',
-                price: '3000.00',
-                dNum: '10',
-                dPrice: '200.00',
-                maxNum: '20',
-                charges: '200.00',
-                sPlace: '宁波',
-                ePlace: '北京',
-                transition: '飞机',
-                supply: '宁波供应商',
-                supplyPhone: '13990213241',
-                imgSrc: 'img/selectData.png',
-                orderStatus: '已支付',
-                purchaseDate: '2018-10-01',
-                purchaseNum: '3',
-                pInfo: [
-                    {
-                        cName: '张三',
-                        idCard: '340321199911113212',
-                    }, {
-                        cName: '张三',
-                        idCard: '340321199911113212',
-                    }, {
-                        cName: '张三',
-                        idCard: '340321199911113212',
-                    },
-                ],
-                payPrice: '9000.00',
-
-
-                countNum: '5',
-                rPrice: '0',
-                rCountPrice: '0',
-                forecastPrice: '100',
-
-                agency: [
-                    {
-                        vxNickName: '旅游分销商',
-                        collageNum: '3',
-                    }, {
-                        vxNickName: '旅游分销商2',
-                        collageNum: '2',
-                    },
-
-                ],
+                decrPrice:'',
+                shareOrd:[],
+                shareOrdUserBuy:[],
+                shareOrdUserBuyList:[],
+                shareOrdUserInfoList:[],
+                // tradeName: '宁波直飞北京纯玩五日游',
+                // date: [
+                //     '2018-10-01', '2018-10-03', '2018-10-05'
+                // ],
+                // mPrice: '4500.00',
+                // jPrice: '4000.00',
+                // price: '3000.00',
+                // dNum: '10',
+                // dPrice: '200.00',
+                // maxNum: '20',
+                // charges: '200.00',
+                // sPlace: '宁波',
+                // ePlace: '北京',
+                // transition: '飞机',
+                // supply: '宁波供应商',
+                // supplyPhone: '13990213241',
+                // imgSrc: 'img/selectData.png',
+                // orderStatus: '已支付',
+                // purchaseDate: '2018-10-01',
+                // purchaseNum: '3',
+                // pInfo: [
+                //     {
+                //         cName: '张三',
+                //         idCard: '340321199911113212',
+                //     }, {
+                //         cName: '张三',
+                //         idCard: '340321199911113212',
+                //     }, {
+                //         cName: '张三',
+                //         idCard: '340321199911113212',
+                //     },
+                // ],
+                // payPrice: '9000.00',
+                //
+                //
+                // countNum: '5',
+                // rPrice: '0',
+                // rCountPrice: '0',
+                // forecastPrice: '100',
+                //
+                // agency: [
+                //     {
+                //         vxNickName: '旅游分销商',
+                //         collageNum: '3',
+                //     }, {
+                //         vxNickName: '旅游分销商2',
+                //         collageNum: '2',
+                //     },
+                //
+                // ],
 
             }
         },
-        computed: {
-            newDate() {
-                return this.date.join('、');
+        filters:{
+            dateP(i){
+                if(i){
+                    return i.split(' ')[0];
+                }
+            },
+            toFixed(i){
+                if(i){
+                    return i.toFixed(2);
+                }
             }
         },
-        methods: {}
+        mounted() {
+            this.getOrder();
+        },
+        methods: {
+            getId() {
+                let reg = new RegExp("(^|&)" + 'id' + "=([^&]*)(&|$)", "i");
+                let r = window.location.search.substr(1).match(reg);
+                if (r != null) {
+                    this.id = decodeURI(r[2]);
+                }
+                return null
+            },
+            getOrder() {
+                let that = this;
+                this.getId();
+                $.ajax({
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/myBuyShareOrdInfo',
+                    type: 'get',
+                    data: {
+                        'id': this.id,
+                    },
+                    success(res) {
+                        if(res.resultCode==100){
+                            that.decrPrice = res.data.decrPrice;
+                            that.shareOrd = res.data.shareOrd;
+                            that.shareOrdUserBuy = res.data.shareOrdUserBuy;
+                            that.shareOrdUserBuyList = res.data.shareOrdUserBuyList;
+                            that.shareOrdUserInfoList = res.data.shareOrdUserInfoList;
+                        }else{
+                            alert(res.resultMessage);
+                        }
+                    },
+                    error(e) {
+                        console.log(e);
+                    }
+                })
+            }
+        }
     })
 </script>
 </body>

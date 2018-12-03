@@ -17,7 +17,7 @@
 <div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="#"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>我的订单</span>
         </div>
 
@@ -56,7 +56,7 @@
 
             <!--分割块-->
             <div class="row"
-                 style="height: 1rem;background-color: rgb(244,244,244);border-bottom: 1px solid rgb(121, 121, 121);">
+                 style="height: 1rem;background-color: rgb(244,244,244);border-bottom: 1px solid rgb(221, 221, 221);">
             </div>
 
 
@@ -109,7 +109,7 @@
             getOrder() {
                 let that = this;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/myShareOrdList',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/myShareOrdList',
                     type: 'get',
                     data: {
                         'currentPage': that.currentPage,

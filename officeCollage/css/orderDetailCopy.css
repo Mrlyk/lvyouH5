@@ -21,9 +21,29 @@
     padding-left: 1rem;
     padding-bottom: 1rem;
     border-bottom: 1px solid rgb(121, 121, 121);
+    box-sizing: border-box;
+}
+
+.rowImg>img{
+    margin-top: 0.5rem;
+    width: 50%;
+    height: 50%;
 }
 
 /*拼单信息*/
+/*总信息*/
+.generalInfo{
+    padding: 1rem;
+    padding-bottom: 0;
+    flex-direction: column;
+    border-top: 1px solid rgb(121,121,121);
+}
+
+.generalInfo>p{
+    color: rgb(101, 101, 101);
+    margin-bottom: 0.3rem;
+}
+/*不同日期信息*/
 .collageInfo {
     padding: 1rem;
     padding-bottom: 0;

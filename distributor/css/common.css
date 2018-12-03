@@ -32,27 +32,58 @@ body {
     margin: 0;
 }
 
+a{
+    text-decoration: none;
+}
+
+a:hover{
+    color: black !important;
+}
+a:active{
+    color: black !important;
+    text-decoration: none;
+}
+
+input{
+    border: none;
+}
+
+button{
+    border: none;
+}
+
+/*vue数据未渲染完成式不显示*/
+[v-cloak] {
+    display: none;
+}
+
 .container-fluid {
     font-size: 1.1rem;
 
 }
 
 .header {
-    border-bottom: 1px solid rgb(121, 121, 121);
+    border-bottom: 1px solid rgb(191, 191, 191);
     padding: 0.8rem;
     justify-content: center;
     align-items: center;
+    background-color: white;
 }
 
 .header > a {
-    color: black;
-    width: 10%;
-    font-size: 1.6rem;
+    width: 6%;
+    font-size: 1.8rem;
     position: absolute;
     left: 1rem;
     text-decoration: none;
 }
 
 .header > span {
-    font-size: 1.4rem;
+    font-size: 1.2rem;
+}
+
+.slide{
+    height: 1rem;
+    background-color: rgb(244,244,244);
+    border-bottom: 1px solid rgb(200,200,200);
 }

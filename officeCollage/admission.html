@@ -55,7 +55,7 @@
 <div id="container">
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="#"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>办事处入驻</span>
         </div>
         <div class="row">
@@ -96,7 +96,7 @@
             getData() {
                 let that = this;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/shareOfficeInfo',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/shareOfficeInfo',
                     type: 'get',
                     success(res) {
                         if (res.resultCode == 100) {

@@ -19,7 +19,7 @@
 <div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="#"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>拼单旅游</span>
         </div>
 
@@ -49,7 +49,7 @@
         <div class="row collage" v-for="item in collage" @click="toDetail(item.id)">
             <div class="col-4">
                 <div class="collageImg">
-                    <img style="width: 100%;" :src="'http://114.55.95.164/tour_upFile/'+item.journeyUrl">
+                    <img style="width: 100%;" :src="'http://114.55.95.164:80/tour_upFile/'+item.journeyUrl">
                 </div>
             </div>
             <div class="col-8" v-if="item.isShare==1">
@@ -117,7 +117,7 @@
             search(des, rN) {
                 let that = this ;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/shareLocalOrdList',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/shareLocalOrdList',
                     type: 'get',
                     data: {
                         'endAddr':des,
@@ -161,7 +161,7 @@
             getOrder() {
                 let that = this;
                 $.ajax({
-                    url: 'http://114.55.95.164/tour/wechat/shareServer/shareLocalOrdList',
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/shareLocalOrdList',
                     type: 'get',
                     data: {
                         'currentPage': that.currentPage,

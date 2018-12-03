@@ -17,7 +17,7 @@
 <div id="container" v-cloak>
     <div class="container-fluid">
         <div class="row header">
-            <a href="#"> < </a>
+            <a href="#"> <img src="img/arrow.png" style="width: 60%;vertical-align: middle"> </a>
             <span>创建订单</span>
         </div>
         <div class="row headerRow">
@@ -28,22 +28,22 @@
         <!--我创建的拼单-->
         <div v-for="item in createOrder">
             <div class="row createOrderTitle">
-                <span>{{item.orderName}}</span>
-                <span v-if="item.status=='拼单中'" style="color: red;min-width: 15%;">{{item.status}}</span>
-                <span v-else style="min-width: 15%;">{{item.status}}</span>
+                <span>{{item.tourName}}</span>
+                <span v-if="item.status==2" style="color: red;min-width: 15%;">待抢购</span>
+                <span v-else style="min-width: 15%;">已完成</span>
             </div>
             <div class="row createOrder">
-                <p>目的地：{{item.destination}}</p>
-                <p>发班日期：{{item.sDate |toStringDate}}</p>
-                <p>门市价：<span style="color: red">¥{{item.mPrice}}</span></p>
-                <p>结算价：<span style="color: red">¥{{item.jPrice}}</span></p>
+                <p>目的地：{{item.endAddr}}</p>
+                <p>发班日期：{{item.datesStr}}</p>
+                <p>门市价：<span style="color: red">¥{{item.fansPrice | toFixed}}</span></p>
+                <p>结算价：<span style="color: red">¥{{item.storePrice | toFixed}}</span></p>
             </div>
 
             <div class="row orderFooter">
-                <span>发布时间：{{item.subTime}}</span>
+                <span>发布时间：{{item.createDate}}</span>
                 <div class="orderBtn">
-                    <button @click="finishCollage" v-if="item.status=='拼单中'">结束拼单</button>
-                    <button>查看详情</button>
+                    <button style="margin-right: 0.3rem" @click="finishCollage(item.id)" v-if="item.status==2">结束拼单</button>
+                    <button @click="toDetail(item.id)">查看详情</button>
                 </div>
             </div>
 
@@ -60,40 +60,83 @@
         el: '#container',
         data() {
             return {
-                createOrder: [
-                    {
-                        orderName: '宁波直飞北京纯玩五日游五日游',
-                        status: '拼单中',
-                        destination: '北京',
-                        sDate: [
-                            '2018-10-01', '2018-10-03', '2018-10-05'
-                        ],
-                        mPrice: '4500.00',
-                        jPrice: '4000.00',
-                        subTime: '2018-04-23 15:15',
-                    },{
-                        orderName: '宁波直飞北京纯玩五日游五日游',
-                        status: '已完成',
-                        destination: '北京',
-                        sDate: [
-                            '2018-10-01', '2018-10-03', '2018-10-05'
-                        ],
-                        mPrice: '4500.00',
-                        jPrice: '4000.00',
-                        subTime: '2018-04-23 15:15',
-                    }
-                ],
+                createOrder: [],
+
+                pageSize: 4,
+                currentPage: 1,
 
             }
         },
         filters: {
-            toStringDate(input) {
-                return input.join('、');
+            toFixed(input) {
+                if (input) {
+                    return input.toFixed(2);
+                }
             }
         },
-        methods:{
-            finishCollage(){
+        mounted() {
+            this.getOrder();
+            this.handScroll();
+        },
+        methods: {
+            //结束拼单
+            finishCollage(id) {
+                $.ajax({
+                    url:'http://192.168.2.113/tour/wechat/shareServer/closeOrd',
+                    type:'get',
+                    data:{
+                        'id':id,
+                    },
+                    success(res){
+                        if (res.resultCode==100){
+                            console.log('成功');
+                            location.reload();
+                        }
+                    },
+                    error(e){
+                        console.log(e);
+                    }
+                })
+            },
 
+            handScroll() {
+                var self = this;
+                $(window).scroll(function () {
+                    let scrollTop = $(this).scrollTop();
+                    let seenHeight = $(this).height();
+                    let allHeight = $(document).height();
+                    if (scrollTop + seenHeight >= allHeight) {
+                        self.pageSize += 10;
+                        self.getOrder();
+                    }
+                })
+
+            },
+
+            getOrder() {
+                let that = this;
+                $.ajax({
+                    url: 'http://192.168.2.113/tour/wechat/shareServer/myCrtShareOrdList',
+                    type: 'get',
+                    data: {
+                        'showCount': this.pageSize,
+                        'currentPage': this.currentPage,
+                    },
+                    success(res) {
+                        if (res.resultCode == 100) {
+                            that.createOrder = res.data;
+
+                        } else {
+                            console.log(res.resultMessage);
+                        }
+                    },
+                    error(e) {
+                        console.log(e);
+                    }
+                })
+            },
+            toDetail(id){
+                location.href='./orderDetailCopy.html?id='+id;
             }
         }
 
